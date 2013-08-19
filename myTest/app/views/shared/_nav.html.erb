@@ -1,0 +1,21 @@
+<div class="login">
+<%= render "shared/login_form" %>
+</div>
+
+<div class="latest_news">
+<h2>Latest News</h2>
+<ul>
+  <% 5.times do |i| %>
+    <li><%= link_to "News Headline", "#" %></li>
+  <% end %>
+</ul>
+</div>
+
+<div class="member_blog">
+<h2>Member's Blog</h2>
+<ul>
+  <% 5.times do |i| %>
+    <li><%= link_to "Blog Title", "#" %></li>
+  <% end %>
+</ul>
+</div>
