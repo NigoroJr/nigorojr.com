@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nigorojr</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+<meta http-equiv="content-type" content="text/html" charset="utf-8">
+<title>NigoroJr</title>
+<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= csrf_meta_tags %>
+<%= favicon_link_tag("favicon.ico") %>
 </head>
+
 <body>
+<nav id="nav">
+  <ul>
+    <li><%= link_to("Tips", "/tips") %></li>
+    <li><%= link_to("Apps", "/apps") %></li>
+    <li><%= link_to("FTP", "/ftp") %></li>
+    <li><%= link_to("Users", "/users") %></li>
+    <li><%= link_to("About", "/about") %></li>
+    <li style="float: right"><%= mail_to("nigorojr@gmail.com", "Contact") %></li>
+  </ul>
+</nav>
 
-<%= yield %>
+<div id="header">
+  <%= link_to(image_tag("NigoroJrLogo.png", size: "686x200", alt: "NigoroJr Logo"), "/") %>
+</div>
 
+
+<div id="my_body">
+  <div id="contents_wrapper">
+    <div id="main_contents">
+
+      <%= yield %>
+
+    </div>
+  </div>
+
+  <div id="footer">
+    <%= link_to(image_tag("glider-small.png", size: "33x33", alt: "Hacker Emblem"), "http://www.catb.org/hacker-emblem/") %>
+    <%= link_to(image_tag("vim_love.gif", alt: "I love Vim banner"), "http://www.vim.org") %>
+    <%= link_to(image_tag("powered_by_perl.gif", alt: "Powered by Perl"), "http://www.perl.com") %>
+    <div id="copyright">
+      Copyright (C) 2014 NigoroJr.com All Rights Reserved
+    </div>
+  </div>
+</div>
 </body>
 </html>
