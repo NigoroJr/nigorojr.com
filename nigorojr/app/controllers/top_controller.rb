@@ -1,6 +1,6 @@
 class TopController < ApplicationController
   def about
-    @foo = `date`
+    @title = "About"
   end
 
   def index
