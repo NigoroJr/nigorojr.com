@@ -1,0 +1,176 @@
+.navbar {
+    /* margin: 0 auto; */
+    font-size: 15px;
+    /* font-family: Tahoma, Geneva, sans-serif; */
+    font-family: "Hiragino Maru Gothic Pro", Meiryo, Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    /* background-color: #005fff; */
+    background-color: #00a2ff;
+    /* overflow: auto; */
+    overflow: visible;
+    padding: 0 10%;
+}
+
+.navbar ul {
+    /* margin: 0; */
+}
+
+.navbar ul li {
+    display: inline-block;
+    background-color: #00a2ff;
+    list-style: none;
+    margin: 5px 0px;
+}
+
+.navbar ul li a {
+    padding: 7px 5px;
+    margin: 0px 1px;
+    text-decoration: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.navbar ul a:link {
+    color: #fff;
+}
+
+.navbar ul a:visited {
+    color: #fff;
+}
+
+.navbar ul a:hover {
+    color: #fff;
+    background-color: #005fff;
+    transition: all 0.1s ease-in 0;
+    -webkit-transition: all 0.1s ease-in 0;
+}
+
+.navbar ul a:active {
+    color: #fff;
+    background-color: #001aff;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    width: 100px;
+    font-weight: bold;
+}
+
+.dropdown-text::-moz-selection,
+.dropdown-toggle::-moz-selection { background: transparent; color: inherit; }
+.dropdown-text::selection,
+.dropdown-toggle::selection { background: transparent; color: inherit; }
+
+.dropdown-text {
+    cursor: pointer;
+    position: absolute;
+    text-indent: 10px;
+    line-height: 28px;
+    background-color: #4f4f4b;
+    background-color: #00a2ff;
+    width: 100%;
+}
+
+.dropdown-text,
+.dropdown-content a {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.dropdown-toggle {
+    font-size: 0;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    border: none;
+    padding: 0;
+    margin: 0 0 0 1px;
+    background: transparent;
+    text-indent: -5px;
+    height: 24px;
+    width: 100%;
+}
+
+.dropdown-toggle:focus {
+    outline: 0;
+}
+
+.dropdown-content {
+    -webkit-transition: .25s ease;
+    -moz-transition: .25s ease;
+    -ms-transition: .25s ease;
+    -o-transition: .25s ease;
+    transition: .25s ease;
+    list-style-type: none;
+    position: absolute;
+    top: 32px;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    visibility:hidden;
+    text-indent: 10px;
+    line-height: 38px;
+    background-color: #df826b;
+    width: 100px;
+}
+
+.dropdown-content:after {
+    position: absolute;
+    right: 14px;
+    top: -9px;
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 8px 9px 8px;
+    border-color: transparent transparent #df826b transparent;
+}
+
+.dropdown-content li {
+    border-bottom:4px solid #4f4f4b;
+    overflow:hidden;
+}
+.dropdown-content li:last-child {
+    border-bottom:none;
+}
+.dropdown-content a {
+    display: block;
+    -webkit-transition: .25s ease;
+    -moz-transition: .25s ease;
+    -ms-transition: .25s ease;
+    -o-transition: .25s ease;
+    transition: .25s ease;
+}
+
+.dropdown-content a:hover {
+    /* background: #4f4f4b; */
+    background-color: #005fff;
+    padding-left:5px;
+}
+
+
+.dropdown-toggle:hover ~ .dropdown-text,
+.dropdown-toggle:focus ~ .dropdown-text {
+    background-color: #005fff;
+}
+
+.dropdown-toggle:focus ~ .dropdown-text {
+    border-color: #c5c5c5;
+    z-index: 2;
+}
+
+.dropdown-toggle:focus ~ .dropdown-text:after {
+    border-width: 0 4px 5px 4px;
+    border-color: transparent transparent #555 transparent;
+}
+
+.dropdown-content:hover,
+.dropdown-toggle:focus ~ .dropdown-content {
+    opacity: 1;
+    visibility:visible;
+    top: 55px;
+}

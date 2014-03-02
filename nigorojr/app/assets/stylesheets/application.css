@@ -26,63 +26,6 @@ body {
     font-family: Tahoma, "segoe UI", "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
 }
 
-#nav {
-    margin: 0 auto;
-    font-size: 15px;
-    /* font-family: Tahoma, Geneva, sans-serif; */
-    font-family: "Hiragino Maru Gothic Pro", Meiryo, Tahoma, Geneva, sans-serif;
-    font-weight: bold;
-    /* background-color: #005fff; */
-    background-color: #00a2ff;
-    /* Important */
-    overflow: auto;
-    padding: 0 10%;
-}
-
-#nav ul {
-    margin: 0;
-}
-
-#nav ul li {
-    float: left;
-    display: block;
-    background-color: #00a2ff;
-    list-style: none;
-}
-
-#nav ul li a {
-    display: block;
-    /* Height: 7, Width: 10 */
-    margin: 3px 5px;
-    padding: 4px 5px;
-    /* padding: 7px 10px; */
-    text-decoration: none;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
-
-#nav li a:link {
-    color: #fff;
-    text-decoration: none;
-}
-
-#nav li a:visited {
-    color: #fff;
-    text-decoration: none;
-}
-
-#nav li a:hover {
-    color: #fff;
-    background-color: #005fff;
-    transition: all 0.1s ease-in 0;
-    -webkit-transition: all 0.1s ease-in 0;
-}
-
-#nav li a:active {
-    color: #fff;
-    background-color: #001aff;
-}
-
 #header {
     text-align: center;
 }
