@@ -14,7 +14,8 @@ development:
   database: nigorojr_development
   pool: 5
   username: nigorojr_worker
-  password: <%= begin IO.read(ENV['HOME'] + "/.db") rescue "" end %>
+  # Example: IO.read(ENV['HOME'] + "/.db")
+  password: <%= begin IO.read("/home/naoki/.db") rescue "" end %>
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -26,7 +27,7 @@ test:
   database: nigorojr_test
   pool: 5
   username: nigorojr_worker
-  password: <%= begin IO.read(ENV['HOME'] + "/.db") rescue "" end %>
+  password: <%= begin IO.read("/home/naoki/.db") rescue "" end %>
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -35,5 +36,5 @@ production:
   database: nigorojr_production
   pool: 5
   username: nigorojr_worker
-  password: <%= begin IO.read(ENV['HOME'] + "/.db") rescue "" end %>
+  password: <%= begin IO.read("/home/naoki/.db") rescue "" end %>
   socket: /var/run/mysqld/mysqld.sock
