@@ -3,8 +3,8 @@ class CreateArticles < ActiveRecord::Migration
     create_table :articles do |t|
       # Title of article
       t.string :title
-      # Body of article
-      t.string :body
+      # Path to the file that contains the body of article
+      t.string :file_loc
 
       t.string :author
       t.string :category
