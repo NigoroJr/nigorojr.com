@@ -1,9 +1,9 @@
 module ApplicationHelper
   def get_title
-    page_title = "NigoroJr"
+    website_title = "NigoroJr"
 
-    page_title = @title + " - " + page_title if @title
+    website_title = @page_title + " - " + website_title if @page_title
 
-    return page_title
+    return website_title
   end
 end

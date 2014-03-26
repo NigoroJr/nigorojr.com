@@ -13,9 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140225193705) do
 
-  create_table "articles", force: true do |t|
+  create_table "tips", force: true do |t|
     t.string   "title"
-    t.string   "body"
+    t.string   "file_loc"
     t.string   "author"
     t.string   "category"
     t.string   "tags"
