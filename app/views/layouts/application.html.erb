@@ -5,6 +5,8 @@
 <title><%= get_title %></title>
 <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "jquery.photobox" %>
+<%= stylesheet_link_tag "photobox" %>
 <%= csrf_meta_tags %>
 <%= favicon_link_tag("favicon.ico") %>
 </head>
@@ -16,8 +18,11 @@
   <%= link_to(image_tag("NigoroJrLogo.png", size: "686x200", alt: "NigoroJr Logo"), "/") %>
 </div>
 
-
 <div id="my_body">
+  <% if flash.notice %>
+    <p class="notice"><%= flash.notice %></p>
+  <% end %>
+
   <div id="contents_wrapper">
     <div id="main_contents">
 

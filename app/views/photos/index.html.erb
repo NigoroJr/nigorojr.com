@@ -1,0 +1,18 @@
+<% if @photos.present? %>
+  <div id="gallery">
+    <% @photos.each do |photo| %>
+      <%= render "shared/photo_thumbnail", photo: photo %>
+    <% end %>
+  </div>
+
+	<script>
+		$('#gallery').photobox('a');
+		// or with a fancier selector and some settings, and a callback:
+		$('#gallery').photobox('a:first', { thumbs:false, time:0 }, imageLoaded);
+		function imageLoaded(){
+			console.log('image has been loaded...');
+		}
+	</script>
+<% else %>
+  <h1>No image found</h1>
+<% end%>

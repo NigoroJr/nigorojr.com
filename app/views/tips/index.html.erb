@@ -1,23 +1,9 @@
 <% if @tips.present? %>
-  <table class="list">
-    <tr>
-      <th>Title</th>
-      <th>Tags</th>
-      <th>Posted</th>
-      <th>Author</th>
-      <th>Language</th>
-    </tr>
+  <% @admin_page = [:create, @tips] %>
 
-    <% @tips.each do |tip| %>
-      <tr>
-        <td><%= tip.title %></td>
-        <td><%= tip.tags %></td>
-        <td><%= tip.author %></td>
-        <td><%= tip.language %></td>
-        <td><%= tip.created_at %></td>
-      </tr>
-    <% end %>
-  </table>
+<% @tips.each do |tip| %>
+  <%= render "shared/article", article: tip %>
+<% end %>
 
 <% else %>
   <h3>No tip found!</h3>

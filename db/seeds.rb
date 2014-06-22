@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-tables = %w( tips )
+tables = %w( tips products photos )
 tables.each do |table|
   path = Rails.root.join("db/seeds", Rails.env, table + ".rb")
   if (File.exist?(path))

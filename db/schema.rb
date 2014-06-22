@@ -11,11 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225193705) do
+ActiveRecord::Schema.define(version: 20140620010241) do
+
+  create_table "photos", force: true do |t|
+    t.string   "location"
+    t.string   "object"
+    t.string   "category"
+    t.string   "file_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "website"
+    t.string   "category"
+    t.string   "team"
+    t.date     "updated"
+    t.string   "version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tips", force: true do |t|
     t.string   "title"
-    t.string   "file_loc"
+    t.string   "body"
     t.string   "author"
     t.string   "category"
     t.string   "tags"
