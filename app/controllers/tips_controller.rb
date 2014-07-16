@@ -34,6 +34,14 @@ class TipsController < ApplicationController
   end
 
   def update
+    @tip = Tip.find(params[:id])
+    attributes = params.require(:tip).permit(:title, :body, :tags, :category, :language, :author)
+    @tip.assign_attributes(attributes)
+    if @tip.save
+      redirect_to @tip, notice: "Updated tip"
+    else
+      render "new"
+    end
   end
 
   def destroy
