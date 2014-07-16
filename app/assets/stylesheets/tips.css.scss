@@ -1,3 +1,21 @@
-// Place all the styles related to the articles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.article .title {
+  font-size: 30px;
+}
+
+.article .body {
+}
+
+.article .end_body {
+  margin: 20px 0;
+}
+
+.end_article {
+  box-shadow: 0 0 10px 1px #005fff;
+  height: 0;
+  border: 0;
+  margin: 15px 0;
+}
+
+.end_article:after {
+  content: "\0";
+}
