@@ -1,22 +1,24 @@
-<div class="article">
-    <h1 class="title"><%= link_to article.title, article %></h1>
-    <p class="body">
-    <%= article.body %>
-    </p>
-    <div class="author">
-        <%= article.author %>
-    </div>
-    <div class="language">
-        <%= article.language %>
-    </div>
-    <div class="posted_at">
-        <%= article.created_at %>
-    </div>
-    <div class="tags">
-        <%= article.tags %>
-    </div>
-    <div class="admin">
-        <%= link_to "Edit", [:edit, article] %>
-        <%= link_to "Delete", article, method: :delete, confirm: "Are you sure you want to delete this?" %>
-    </div>
-</div>
+<section class="article">
+  <h1 class="title"><%= link_to article.title, article %></h1>
+  <section class="body">
+    <%= raw(convert_to_markdown(article.body)) %>
+  </section>
+  <hr class="end_body">
+  <section class="tags">
+    <%= article.tags %>
+  </section>
+  <section class="posted_at">
+    <%= "Posted by" %>
+    <b><%= article.author %></b>
+    <%= "at #{article.created_at}" %>
+  </section>
+  <% if article.updated_at != article.created_at %>
+    <section class="updated_at">
+      <%= "Updated at #{article.updated_at}" %>
+    </section>
+  <% end %>
+  <section class="admin">
+    <%= link_to "Edit", [:edit, article] %>
+    <%= link_to "Delete", article, method: :delete, confirm: "Are you sure you want to delete this?" %>
+  </section>
+</section>

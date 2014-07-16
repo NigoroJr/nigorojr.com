@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// Syntax highlighting
+//= require highlight.pack
+hljs.initHighlightingOnLoad();

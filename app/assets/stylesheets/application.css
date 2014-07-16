@@ -10,6 +10,12 @@
  *
  *= require_self
  *= require_tree .
+
+ * Syntax highlighting
+ *= require monokai_sublime
+ *= require zenburn
+ *= require solarized_light
+ *= require atelier-lakeside.light
  */
 
 * {

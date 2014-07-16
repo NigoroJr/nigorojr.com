@@ -34,6 +34,9 @@ end
 
 gem 'rmagick'
 
+# Markdown
+gem 'redcarpet'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
