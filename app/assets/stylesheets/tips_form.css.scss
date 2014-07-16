@@ -1,7 +1,29 @@
 $border_color: #00a2ff;
 // $border_color: #005fff;
 
+form {
+  width: 650px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+form ul {
+  list-style: none;
+}
+
+form ul:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+form li {
+  display: block;
+  float: left;
+}
+
 input[type=text], textarea {
+  width: 100%;
   transition: all 0.20s ease-in-out;
   outline: none;
   border: 1px solid #dddddd;
@@ -10,4 +32,9 @@ input[type=text], textarea {
 input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px $border_color;
   border: 1px solid $border_color;
+}
+
+input[type=submit] {
+  float: right;
+  margin: 5px 0;
 }

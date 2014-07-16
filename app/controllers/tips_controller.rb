@@ -23,7 +23,9 @@ class TipsController < ApplicationController
   end
 
   def create
-    @tip = Tip.new(params[:tip])
+    attributes = params.require(:tip).permit(:title, :body, :tags, :category, :language, :author)
+    @tip = Tip.new(attributes)
+    # @tip = Tip.new(params[:tip])
     if @tip.save
       redirect_to @tip, notice: "Posted tip"
     else
