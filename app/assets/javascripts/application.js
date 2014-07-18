@@ -17,4 +17,3 @@
 
 // Syntax highlighting
 //= require highlight.pack
-hljs.initHighlightingOnLoad();

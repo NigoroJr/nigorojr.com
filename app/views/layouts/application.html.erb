@@ -9,6 +9,15 @@
 <%= stylesheet_link_tag "photobox" %>
 <%= csrf_meta_tags %>
 <%= favicon_link_tag("favicon.ico") %>
+<script>
+var highlight = function() {
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+};
+$(document).ready(highlight);
+$(document).on('page:change', highlight);
+</script>
 </head>
 
 <body>
