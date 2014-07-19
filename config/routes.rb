@@ -3,7 +3,7 @@ Nigorojr::Application.routes.draw do
 
   root "top#index"
 
-  resources :tips do
+  resources :articles do
     collection { get "search" }
   end
 

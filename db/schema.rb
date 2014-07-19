@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620010241) do
+ActiveRecord::Schema.define(version: 20140719012315) do
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.string   "body"
+    t.string   "author"
+    t.string   "category"
+    t.string   "tags"
+    t.string   "language"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: true do |t|
     t.string   "location"
@@ -34,13 +45,10 @@ ActiveRecord::Schema.define(version: 20140620010241) do
     t.datetime "updated_at"
   end
 
-  create_table "tips", force: true do |t|
-    t.string   "title"
-    t.string   "body"
-    t.string   "author"
-    t.string   "category"
-    t.string   "tags"
-    t.string   "language"
+  create_table "users", force: true do |t|
+    t.string   "screen"
+    t.string   "username",        null: false
+    t.string   "hashed_password", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

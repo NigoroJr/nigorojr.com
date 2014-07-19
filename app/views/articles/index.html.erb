@@ -1,0 +1,11 @@
+<% if @articles.present? %>
+  <% @admin_page = [:create, @articles] %>
+
+<% @articles.each do |article| %>
+  <%= render "shared/article", article: article %>
+  <hr class="end_article">
+<% end %>
+
+<% else %>
+  <h1>No article found!</h1>
+<% end %>

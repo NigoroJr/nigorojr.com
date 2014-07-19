@@ -1,0 +1,21 @@
+//= require form
+form {
+  width: 650px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+form ul {
+  list-style: none;
+}
+
+form ul:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+form li {
+  display: block;
+  float: left;
+}
