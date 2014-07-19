@@ -5,14 +5,9 @@
     <% end %>
   </div>
 
-	<script>
-		$('#gallery').photobox('a');
-		// or with a fancier selector and some settings, and a callback:
-		$('#gallery').photobox('a:first', { thumbs:false, time:0 }, imageLoaded);
-		function imageLoaded(){
-			console.log('image has been loaded...');
-		}
-	</script>
+  <script>
+$('#gallery').photobox('a');
+  </script>
 <% else %>
   <h1>No image found</h1>
 <% end%>
