@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to :root, notice: "Created user"
     else
+      flash.notice = "Try a different username"
       render "new"
     end
   end

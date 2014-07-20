@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :screen
-      t.string :username, null: false
+      t.string :username, null: false, uniq: true;
       t.string :hashed_password, null: false
 
       t.timestamps
