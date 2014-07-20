@@ -44,12 +44,53 @@ class PhotosController < ApplicationController
   end
 
   def edit
+    @photo = Photo.find(params[:id])
   end
 
   def destroy
+    @photo = Photo.find(params[:id])
+    # Remove image file
+    file_name = get_image_file_name(parent_dir, @photo.object, @photo.location, "jpg")
+    thumbnail_file_name = file_name.sub(/(?=\.[^.]*$)/, "_thumb")
+
+    File.delete(sprintf "%s/%s", partial_path, file_name)
+    File.delete(sprintf "%s/%s", partial_path, thumbnail_file_name)
+
+    @photo.destroy
+
+    redirect_to "/gallery"
   end
 
   def update
+    @photo = Photo.find(params[:id])
+    attributes = params.require(:photo).permit(:location, :object, :category)
+    @photo.assign_attributes(attributes)
+
+    object = params[:photo][:object]
+    location = params[:photo][:location]
+
+    # Relative path of parent directory based on app/assets/images/
+    partial_path = "GT6"
+    # Write in RAILS_ROOT/app/assets/images/GT6
+    parent_dir = sprintf "%s/app/assets/images/%s", Rails.root, partial_path
+
+    # Build file name
+    file_name = get_image_file_name(parent_dir, object, location, "jpg")
+
+    # Write recieved binary data to file
+    image_binary = params[:photo][:image_data].read
+    file_path = sprintf "%s/%s", parent_dir, file_name
+    File.open(file_path, "wb").write(image_binary)
+
+    # file_path needs to be a relative path from app/assets/images/
+    @photo.file_path = sprintf "%s/%s", partial_path, file_name
+
+    if @photo.save
+      index
+      redirect_to "/gallery"
+    else
+      render "edit"
+    end
   end
 
   private
