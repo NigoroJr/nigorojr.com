@@ -24,6 +24,7 @@ class PhotosController < ApplicationController
     partial_path = "GT6"
     # Write in RAILS_ROOT/app/assets/images/GT6
     parent_dir = sprintf "%s/app/assets/images/%s", Rails.root, partial_path
+
     # Build file name
     file_name = get_image_file_name(parent_dir, object, location, "jpg")
 
