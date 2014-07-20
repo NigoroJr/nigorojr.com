@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20140719012315) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
-    t.string   "body"
+    t.text     "body"
     t.string   "author_username"
     t.string   "category"
     t.string   "tags"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140719012315) do
 
   create_table "products", force: true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "website"
     t.string   "category"
     t.string   "team"
