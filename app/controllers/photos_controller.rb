@@ -37,7 +37,7 @@ class PhotosController < ApplicationController
 
     if @photo.save
       index
-      render "index"
+      redirect_to "/gallery"
     else
       render "new"
     end
