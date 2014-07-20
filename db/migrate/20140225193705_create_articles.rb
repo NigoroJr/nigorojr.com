@@ -4,7 +4,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :title
       t.string :body
 
-      t.string :author
+      t.string :author_username
       t.string :category
       t.string :tags
       t.string :language

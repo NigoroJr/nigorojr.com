@@ -1,0 +1,7 @@
+<% if @user.present? %>
+  <% @articles.each do |article| %>
+    <%= render "shared/article", article: article %>
+  <% end %>
+<% else %>
+  No user with that screen name.
+<% end %>

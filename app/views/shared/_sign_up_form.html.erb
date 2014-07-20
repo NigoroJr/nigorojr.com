@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Screen name</th>
+    <td><%= form.text_field :screen %></td>
+  </tr>
+  <tr>
+    <th>Username</th>
+    <td><%= form.text_field :username %></td>
+  </tr>
+  <tr>
+    <th>Password</th>
+    <td><%= form.password_field :raw_password %></td>
+  </tr>
+  <tr>
+    <th>Password confirmation</th>
+    <td><%= form.password_field :raw_password_confirmation %></td>
+  </tr>
+</table>
+<%= form.submit %>

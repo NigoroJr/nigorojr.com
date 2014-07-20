@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  attr_accessor :content
+  attr_accessor :content, :author_username
+  before_filter :login_required, :except => [:index, :show]
 
   def index
     @articles = Article.order("created_at").reverse
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new()
+    @article = Article.new
   end
 
   def edit
@@ -23,9 +24,12 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :author)
+    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :author_username)
     @article = Article.new(attributes)
-    # @article = Article.new(params[:article])
+
+    # Automatically set username of logged in user
+    @article.author_username = @logged_in_as.username
+
     if @article.save
       redirect_to @article, notice: "Posted article"
     else
@@ -37,6 +41,10 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :author)
     @article.assign_attributes(attributes)
+
+    # Automatically set username of logged in user
+    @article.author_username = @logged_in_as.username
+
     if @article.save
       redirect_to @article, notice: "Updated article"
     else

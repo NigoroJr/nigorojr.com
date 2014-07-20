@@ -1,10 +1,11 @@
-<% if @articles.present? %>
-  <% @admin_page = [:create, @articles] %>
-
-<% @articles.each do |article| %>
-  <%= render "shared/article", article: article %>
-  <hr class="end_article">
+<% if @logged_in_as %>
+  <%= link_to "Post new article", :new_article %>
 <% end %>
+<% if @articles.present? %>
+  <% @articles.each do |article| %>
+    <%= render "shared/article", article: article %>
+    <hr class="end_article">
+  <% end %>
 
 <% else %>
   <h1>No article found!</h1>

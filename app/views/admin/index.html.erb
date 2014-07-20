@@ -1,0 +1,5 @@
+<% if @logged_in_as %>
+  <%= render "admin" %>
+<% else %>
+  <%= render "shared/login_form" %>
+<% end %>

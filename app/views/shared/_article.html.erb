@@ -9,7 +9,8 @@
   </section>
   <section class="posted_at">
     <%= "Posted by" %>
-    <b><%= article.author %></b>
+    <% author_screen = get_author_screen(article.author_username) %>
+    <%= link_to author_screen, user_path(author_screen) %>
     <%= "at #{article.created_at}" %>
   </section>
   <% if article.updated_at != article.created_at %>
@@ -17,8 +18,10 @@
       <%= "Updated at #{article.updated_at}" %>
     </section>
   <% end %>
-  <section class="admin">
-    <%= link_to "Edit", [:edit, article] %>
-    <%= link_to "Delete", article, method: :delete, confirm: "Are you sure you want to delete this?" %>
-  </section>
+  <% if @logged_in_as && @logged_in_as.username == article.author_username %>
+    <section class="admin">
+      <%= link_to "Edit", [:edit, article] %>
+      <%= link_to "Delete", article, method: :delete, confirm: "Are you sure you want to delete this?" %>
+    </section>
+  <% end %>
 </section>

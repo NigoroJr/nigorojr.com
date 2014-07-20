@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  attr_accessor :content
+  before_filter :login_required, :except => [:index, :show]
 
   def index
     @products = Product.order("created_at").reverse
@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new()
+    @product = Product.new
   end
 
   def edit
@@ -27,11 +27,18 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @product = Product.find(params[:id])
+    @product.destroy();
+    redirect_to :products, notice: "Deleted product"
   end
 
   def update
-    @product = Tip.find(params[:id])
-    @product.destroy();
-    redirect_to :products, notice: "Deleted product"
+    @product = Product.find(params[:id])
+    @product.assign_attributes(params[:product])
+    if @product.save
+      redirect_to @product, notice: "Updated product"
+    else
+      render "edit"
+    end
   end
 end

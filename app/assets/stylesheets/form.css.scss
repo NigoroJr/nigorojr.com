@@ -1,14 +1,14 @@
 $border_color: #00a2ff;
 // $border_color: #005fff;
 
-input[type=text], textarea {
+input[type=text], input[type=password], textarea {
   width: 100%;
   transition: all 0.20s ease-in-out;
   outline: none;
   border: 1px solid #dddddd;
 }
 
-input[type=text]:focus, textarea:focus {
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
   box-shadow: 0 0 5px $border_color;
   border: 1px solid $border_color;
 }

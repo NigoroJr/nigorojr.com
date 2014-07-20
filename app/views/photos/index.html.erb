@@ -1,3 +1,7 @@
+<% if @logged_in_as %>
+  <%= link_to "Post new photo", :new_photo %>
+<% end %>
+
 <% if @photos.present? %>
   <div id="gallery">
     <% @photos.each do |photo| %>
