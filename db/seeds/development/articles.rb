@@ -6,7 +6,7 @@ titles.each do |title|
   Article.create(
     title: title,
     body: "Hi, this is a test!",
-    author_username: "NigoroJr",
+    author_username: "naoki",
     category: "tips",
     language: "English",
   )
