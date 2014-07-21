@@ -1,3 +1,15 @@
-// Place all the styles related to the admin controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.admin_page table {
+    border: 1px solid #000000;
+}
+
+.admin_page th {
+    background-color: #c2c2c2;
+}
+
+.admin_page th, td {
+    border: 1px solid #000000;
+}
+
+.admin_page .article_title, .product_name {
+    width: 200px;
+}

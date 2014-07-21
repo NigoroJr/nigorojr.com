@@ -1,31 +1,75 @@
+<section class="admin_page">
 <h1>Admin</h1>
 <h2>Articles</h2>
-<% Article.all.each do |article| %>
-  <p>
-  <%= article.title + " posted by " + article.author_username %>
-  <%= link_to "Edit", [:edit, article] %>
-  <%= link_to "Delete", article, method: :delete, confirm: "Really delete?" %>
-  </p>
-<% end %>
+<table class="articles_list">
+  <tr>
+    <th>Title</th>
+    <th>Posted</th>
+    <th>Updated</th>
+    <th>Author</th>
+    <th>Manage</th>
+  </tr>
+  <% Article.all.order("created_at").reverse.each do |article| %>
+    <tr>
+      <td class="article_title"><%= link_to article.title, article %></td>
+      <td><%= article.created_at %></td>
+      <td style="text-align: center">
+      <% if article.updated_at != article.created_at %>
+        <%= article.updated_at %>
+      <% else %>
+        <%= "-" %>
+      <% end %>
+      </td> 
+      <td><%= User.find_by_username(article.author_username).screen %></td>
+      <td>
+        <%= link_to "Edit", [:edit, article] %>
+        <%= link_to "Delete", article, method: :delete, confirm: "Really delete?" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
 
 <h2>Products</h2>
+<table class="products_list">
+  <tr>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Manage</ht>
+  </tr>
 <% Product.all.each do |product| %>
-  <p>
-  <%= product.name %>
-  <%= link_to "Edit", [:edit, product] %>
-  <%= link_to "Delete", product, method: :delete, confirm: "Really delete?" %>
-  </p>
-<% end %>
+  <tr>
+    <td class="product_name"><%= link_to product.name, product.website %></td>
+    <td><%= product.version %></td>
+    <td>
+      <%= link_to "Edit", [:edit, product] %>
+      <%= link_to "Delete", product, method: :delete, confirm: "Really delete?" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
 
 <h2>Photos</h2>
-<% Photo.all.each do |photo| %>
-  <p>
-  <%= photo.object %>
-  <%= photo.location %>
-  <%= photo.category %>
-  <%= link_to "Edit", [:edit, photo] %>
-  <%= link_to "Delete", photo, method: :delete, confirm: "Really delete?" %>
-  </p>
-<% end %>
+<table class="photos_list">
+  <tr>
+    <th>Car</th>
+    <th>Location</th>
+    <th>Category</th>
+    <th>Thumbnail</th>
+    <th>Manage</th>
+  </tr>
+  <% Photo.all.each do |photo| %>
+    <tr>
+      <td><%= photo.object %></td>
+      <td><%= photo.location %></td>
+      <td><%= photo.category %></td>
+      <td><%= image_tag photo.get_thumbnail_path, alt: "Thumbnail" %></td>
+      <td>
+        <%= link_to "Edit", [:edit, photo] %>
+        <%= link_to "Delete", photo, method: :delete, confirm: "Really delete?" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to "Log out", :session, method: :delete, confirm: "Really log out?" %>
+</section>
