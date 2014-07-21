@@ -6,10 +6,10 @@
     background-color: #c2c2c2;
 }
 
-.admin_page th td {
+.admin_page th, .admin_page td {
     border: 1px solid #000000;
 }
 
-.article_title .product_name {
+.article_title, .product_name {
     width: 200px;
 }
