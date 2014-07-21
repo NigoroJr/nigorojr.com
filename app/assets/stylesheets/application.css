@@ -16,6 +16,9 @@
  *= require zenburn
  *= require solarized_light
  *= require atelier-lakeside.light
+
+ * "Glowing" forms
+ *= require form
  */
 
 * {
