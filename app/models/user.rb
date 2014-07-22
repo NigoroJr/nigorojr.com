@@ -11,12 +11,15 @@ class User < ActiveRecord::Base
 
   # Returns whether this user has access to (i.e. can edit/delete) given post
   # POST is a model object
-  def can_modify(post)
-    if post == nil
+  def can_modify(model)
+    if model == nil
       return false
     end
 
-    return post.posted_by == self.username ||
+    # "User" model object does not have a "posted_by" field
+    owner = model.instance_of?(User) ? model.username : model.posted_by
+
+    return owner == self.username ||
       self.username == UsersController::ROOT
   end
 
