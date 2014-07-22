@@ -1,0 +1,32 @@
+<table class="articles_list">
+  <tr>
+    <th>Title</th>
+    <th>Posted</th>
+    <th>Updated</th>
+    <% if is_root %>
+      <th>Posted by</th>
+    <% end %>
+    <th>Manage</th>
+  </tr>
+  <% applying_articles = is_root ? Article.all : Article.where(posted_by: @logged_in_as.username) %>
+  <% applying_articles.order("created_at").reverse.each do |article| %>
+    <tr>
+      <td class="article_title"><%= link_to article.title, article %></td>
+      <td><%= article.created_at %></td>
+      <td style="text-align: center">
+      <% if article.updated_at != article.created_at %>
+        <%= article.updated_at %>
+      <% else %>
+        <%= "-" %>
+      <% end %>
+      </td> 
+      <% if is_root %>
+        <td><%= sprintf "%s (%s)", User.username_to_screen(article.posted_by), article.posted_by %></td>
+      <% end %>
+      <td>
+        <%= link_to "Edit", [:edit, article] %>
+        <%= link_to "Delete", article, method: :delete, confirm: "Really delete?" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

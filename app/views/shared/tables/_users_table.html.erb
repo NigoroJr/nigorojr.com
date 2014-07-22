@@ -1,0 +1,16 @@
+<table class="users_list">
+  <tr>
+    <th>Username</th>
+    <th>Screen</th>
+    <th>Member since</th>
+    <th>Delete</th>
+  </tr>
+  <% User.all.order("username").each do |user| %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.screen ? user.screen : "-" %></td>
+      <td><%= user.created_at %></td>
+      <td><%= link_to "Delete", user, method: :delete, confirm: "Really delete?" %></td>
+    </tr>
+  <% end %>
+</table>

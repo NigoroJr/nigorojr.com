@@ -1,0 +1,25 @@
+<table class="products_list">
+  <tr>
+    <th>Name</th>
+    <th>Version</th>
+    <% if is_root %>
+      <th>Posted by</th>
+    <% end %>
+    <th>Manage</th>
+  </tr>
+  <% applying_products = is_root ? Product.all : Product.where(posted_by: @logged_in_as.username) %>
+<% applying_products.each do |product| %>
+  <tr>
+    <td class="product_name"><%= link_to product.name, product.website %></td>
+    <td><%= product.version %></td>
+    <% if is_root %>
+      <% p product.posted_by %>
+      <td><%= sprintf "%s (%s)", User.username_to_screen(product.posted_by), product.posted_by %></td>
+    <% end %>
+    <td>
+      <%= link_to "Edit", [:edit, product] %>
+      <%= link_to "Delete", product, method: :delete, confirm: "Really delete?" %>
+    </td>
+  </tr>
+  <% end %>
+</table>

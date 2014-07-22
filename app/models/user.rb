@@ -31,5 +31,17 @@ class User < ActiveRecord::Base
         return nil
       end
     end
+
+    # Returns the screen name for the given username.
+    # Returns username if no screen name is registered.
+    def username_to_screen(username)
+      user = User.find_by_username(username.downcase)
+
+      if user == nil || user.screen.empty?
+        return username
+      else
+        return user.screen
+      end
+    end
   end
 end
