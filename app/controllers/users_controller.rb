@@ -52,8 +52,15 @@ class UsersController < ApplicationController
     # Use currently logged in user's username
     @user = User.find_by_username(@logged_in_as.username)
 
+    # Update "posted_by"s if username was changed
+    old_username = @user.username
+    new_username = params[:user][:username].downcase
+    if new_username != old_username
+      update_posted_by(old_username, new_username)
+    end
+
     # Update user information
-    @user.username = params[:user][:username].downcase
+    @user.username = new_username
     @user.screen = params[:user][:screen]
 
     password = params[:user][:raw_password]
@@ -87,5 +94,20 @@ class UsersController < ApplicationController
     @user.destroy
 
     redirect_to "root", notice: "Deleted user"
+  end
+
+  private
+  # Updates the "posted_by" fields to the new username
+  def update_posted_by(old_username, new_username)
+    models = [Article, Product, Photo]
+
+    models.each do |model|
+      posts = model.where(posted_by: old_username)
+
+      posts.each do |post|
+        post.posted_by = new_username
+        post.save
+      end
+    end
   end
 end
