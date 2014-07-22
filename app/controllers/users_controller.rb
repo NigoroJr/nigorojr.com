@@ -1,15 +1,27 @@
 class UsersController < ApplicationController
   ROOT = "root"
+  ARTICLES_LIMIT = 5
+  PRODUCTS_LIMIT = 10
+  PHOTOS_LIMIT = 20
 
   def show
     # First attempts to find articles posted by user with given screen name
     @user = User.find_by_screen(params[:screen])
     if @user.present?
-      @articles = Article.find_all_by_posted_by(@user.username)
+      @articles = Article.where(posted_by: @user.username)
+      @products = Product.where(posted_by: @user.username)
+      @photos = Photo.where(posted_by: @user.username)
     else
       # If given screen name was not found, assume given param is username
-      @articles = Article.find_all_by_posted_by(params[:screen].downcase)
+      username = params[:screen].downcase
+      @articles = Article.where(posted_by: username)
+      @products = Product.where(posted_by: username)
+      @photos = Photo.where(posted_by: username)
     end
+
+    @articles.limit(ARTICLES_LIMIT)
+    @products.limit(PRODUCTS_LIMIT)
+    @photos.limit(PHOTOS_LIMIT)
   end
 
   def new

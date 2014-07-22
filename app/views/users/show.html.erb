@@ -1,7 +1,26 @@
+<h1><%= @user.screen %></h1>
 <% if @articles.present? %>
+  <h2>Recent Articles</h2>
   <% @articles.each do |article| %>
     <%= render "shared/article", article: article %>
   <% end %>
-<% else %>
-  No article posted by that user.
+<% end %>
+
+<% if @product.present? %>
+  <h2>Products</h2>
+  <% @product.each do |product| %>
+    <%= render "shared/product", product: product %>
+  <% end %>
+<% end %>
+
+<% if @photos.present? %>
+  <h2>Recent Photos</h2>
+  <div id="gallery">
+    <% @photos.each do |photo| %>
+      <%= render "shared/photo_thumbnail", photo: photo %>
+    <% end %>
+  </div>
+  <script>
+$('#gallery').photobox('a');
+  </script>
 <% end %>
