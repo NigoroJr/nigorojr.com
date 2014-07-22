@@ -50,12 +50,18 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id])
-    # Remove image file
-    file_name = get_image_file_name(parent_dir, @photo.object, @photo.location, "jpg")
-    thumbnail_file_name = file_name.sub(/(?=\.[^.]*$)/, "_thumb")
+    begin
+      # Remove image file
+      absolute_path_orig = sprintf "%s/%s", PARENT_PATH, @photo.file_path
+      File.delete(absolute_path_orig)
 
-    File.delete(sprintf "%s/%s", partial_path, file_name)
-    File.delete(sprintf "%s/%s", partial_path, thumbnail_file_name)
+      # Remove thumbnail file
+      absolute_path_thumb = sprintf "%s/%s",
+        PARENT_PATH, @photo.get_thumbnail_path()
+      File.delete(absolute_path_thumb)
+    rescue  # In case file does not exist
+      ""
+    end
 
     @photo.destroy
 
