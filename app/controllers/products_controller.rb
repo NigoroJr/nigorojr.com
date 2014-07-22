@@ -34,18 +34,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy
-    @product = Product.find(params[:id])
-
-    # Don't delete someone else's post
-    if !@logged_in_as.can_modify(@product)
-      raise Forbidden
-    end
-
-    @product.destroy
-    redirect_to :products, notice: "Deleted product"
-  end
-
   def update
     attributes = params.require(:product).permit(:name, :description, :website, :category, :team, :updated, :version)
     @product = Product.find(params[:id])
@@ -57,5 +45,17 @@ class ProductsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+
+    # Don't delete someone else's post
+    if !@logged_in_as.can_modify(@product)
+      raise Forbidden
+    end
+
+    @product.destroy
+    redirect_to :products, notice: "Deleted product"
   end
 end

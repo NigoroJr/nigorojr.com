@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  attr_accessor :content, :posted_by
   before_filter :login_required, :except => [:index, :show]
 
   def index

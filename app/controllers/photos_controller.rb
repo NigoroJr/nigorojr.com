@@ -16,6 +16,15 @@ class PhotosController < ApplicationController
     @photo = Photo.new
   end
 
+  def edit
+    @photo = Photo.find(params[:id])
+
+    # Don't allow editing someone else's post
+    if !@logged_in_as.can_modify(@photo)
+      raise Forbidden
+    end
+  end
+
   def create
     attributes = params.require(:photo).permit(:location, :object, :category)
     @photo = Photo.new(attributes)
@@ -41,15 +50,6 @@ class PhotosController < ApplicationController
       redirect_to "/gallery"
     else
       render "new"
-    end
-  end
-
-  def edit
-    @photo = Photo.find(params[:id])
-
-    # Don't allow editing someone else's post
-    if !@logged_in_as.can_modify(@photo)
-      raise Forbidden
     end
   end
 
