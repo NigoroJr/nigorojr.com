@@ -41,11 +41,40 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # TODO
+    @user = User.find(params[:id])
+
+    if @user.username != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+      raise Forbidden
+    end
   end
 
   def update
-    # TODO
+    # Use currently logged in user's username
+    @user = User.find_by_username(@logged_in_as.username)
+
+    # Update user information
+    @user.username = params[:user][:username].downcase
+    @user.screen = params[:user][:screen]
+
+    password = params[:user][:raw_password]
+    password_confirmation = params[:user][:raw_password_confirmation]
+    if !password.empty?
+      @user.hashed_password = BCrypt::Password.create(params[:user][:raw_password])
+    end
+
+    if @user.save
+      # Update currently
+      @logged_in_as = @user
+      redirect_to :root, notice: "Updated user information"
+    else
+      if password != password_confirmation
+        flash.notice = "Confirmation doesn't match"
+      else
+        flash.notice = "Try a different username"
+      end
+
+      render "new"
+    end
   end
 
   def destroy
