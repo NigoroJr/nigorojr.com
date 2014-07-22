@@ -17,8 +17,9 @@ class PhotosController < ApplicationController
   end
 
   def create
-    attributes = params.require(:photo).permit(:location, :object, :category, :posted_by)
+    attributes = params.require(:photo).permit(:location, :object, :category)
     @photo = Photo.new(attributes)
+    @photo.posted_by = @logged_in_as.username
 
     object = params[:photo][:object]
     location = params[:photo][:location]
@@ -79,9 +80,10 @@ class PhotosController < ApplicationController
   end
 
   def update
-    @photo = Photo.find(params[:id])
     attributes = params.require(:photo).permit(:location, :object, :category)
+    @photo = Photo.find(params[:id])
     @photo.assign_attributes(attributes)
+    @photo.posted_by = @logged_in_as.username
 
     # Update object and location
     @photo.object = params[:photo][:object]

@@ -23,8 +23,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    attributes = params.require(:product).permit(:name, :description, :website, :category, :team, :updated, :version, :posted_by)
+    attributes = params.require(:product).permit(:name, :description, :website, :category, :team, :updated, :version)
     @product = Product.new(attributes)
+    @product.posted_by = @logged_in_as.username
 
     if @product.save
       redirect_to @product, notice: "Added product"
@@ -46,9 +47,10 @@ class ProductsController < ApplicationController
   end
 
   def update
+    attributes = params.require(:product).permit(:name, :description, :website, :category, :team, :updated, :version)
     @product = Product.find(params[:id])
-    attributes = params.require(:product).permit(:name, :description, :website, :category, :team, :updated, :version, :posted_by)
     @product.assign_attributes(attributes)
+    @product.posted_by = @logged_in_as.username
 
     if @product.save
       redirect_to @product, notice: "Updated product"

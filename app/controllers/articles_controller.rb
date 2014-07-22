@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :posted_by)
+    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language)
     @article = Article.new(attributes)
 
     # Automatically set username of logged in user
@@ -43,8 +43,8 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language)
     @article = Article.find(params[:id])
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :posted_by)
     @article.assign_attributes(attributes)
 
     # Automatically set username of logged in user
