@@ -17,6 +17,13 @@ var highlight = function() {
 };
 $(document).ready(highlight);
 $(document).on('page:change', highlight);
+
+var photobox = function() {
+    $('#gallery').photobox('prepareDOM');
+    $('#gallery').photobox('a');
+};
+$(document).ready(photobox);
+$(document).on('page:change', photobox);
 </script>
 </head>
 
