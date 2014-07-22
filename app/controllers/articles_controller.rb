@@ -21,6 +21,11 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+
+    # Don't allow editing someone else's post
+    if @article.author_username != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+      raise Forbidden
+    end
   end
 
   def create

@@ -8,6 +8,7 @@ Product.create(
   team: "http://www.users.miamioh.edu/jamiespa/verilogTown/credits.html",
   updated: Time.now,
   version: "1.2",
+  posted_by: "naoki",
 )
 
 Product.create(
@@ -18,4 +19,5 @@ Product.create(
   team: "Individual",
   updated: Time.now,
   version: "0.1.0",
+  posted_by: "naoki",
 )

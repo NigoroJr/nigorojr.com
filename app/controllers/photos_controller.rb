@@ -45,6 +45,11 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
+
+    # Don't allow editing someone else's post
+    if @photo.author_username != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+      raise Forbidden
+    end
   end
 
   def destroy

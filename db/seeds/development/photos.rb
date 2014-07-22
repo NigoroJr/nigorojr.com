@@ -5,6 +5,7 @@ Photo.create(
   object: "Honda NSX Type-R;Nissan GT-R",
   category: "Race",
   file_path: "GT6/test_image1.jpg",
+  posted_by: "naoki",
 )
 
 Photo.create(
@@ -12,6 +13,7 @@ Photo.create(
   object: "Nissan GT-R",
   category: "Time Trial",
   file_path: "GT6/test_image2.jpg",
+  posted_by: "naoki",
 )
 
 Photo.create(
@@ -19,6 +21,7 @@ Photo.create(
   object: "Mazda RX-7",
   category: "Drift",
   file_path: "GT6/test_image3.jpg",
+  posted_by: "naoki",
 )
 
 Photo.create(
@@ -26,4 +29,5 @@ Photo.create(
   object: "Chevrolet Corvette",
   category: "Drift",
   file_path: "GT6/test_image4.jpg",
+  posted_by: "naoki",
 )

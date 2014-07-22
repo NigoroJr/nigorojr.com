@@ -1,3 +1,4 @@
+<% is_root = @logged_in_as.username == UsersController::ROOT %>
 <section class="admin_page">
 <h1>Admin</h1>
 <h2>Articles</h2>
@@ -9,7 +10,8 @@
     <th>Author</th>
     <th>Manage</th>
   </tr>
-  <% Article.all.order("created_at").reverse.each do |article| %>
+  <% applying_articles = is_root ? Article.all : Article.where(author_username: @logged_in_as.username) %>
+  <% applying_articles.order("created_at").reverse.each do |article| %>
     <tr>
       <td class="article_title"><%= link_to article.title, article %></td>
       <td><%= article.created_at %></td>
@@ -36,7 +38,8 @@
     <th>Version</th>
     <th>Manage</ht>
   </tr>
-<% Product.all.each do |product| %>
+  <% applying_products = is_root ? Product.all : Product.where(posted_by: @logged_in_as.username) %>
+<% applying_products.each do |product| %>
   <tr>
     <td class="product_name"><%= link_to product.name, product.website %></td>
     <td><%= product.version %></td>
@@ -57,7 +60,8 @@
     <th>Thumbnail</th>
     <th>Manage</th>
   </tr>
-  <% Photo.all.each do |photo| %>
+  <% applying_photos = is_root ? Photo.all : Photo.where(posted_by: @logged_in_as.username) %>
+  <% applying_photos.each do |photo| %>
     <tr>
       <td><%= photo.object %></td>
       <td><%= photo.location %></td>

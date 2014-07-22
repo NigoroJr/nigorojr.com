@@ -6,6 +6,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.string  :category
       # Relative file path from app/assets/images/
       t.string  :file_path
+      t.string  :posted_by
 
       t.timestamps
     end

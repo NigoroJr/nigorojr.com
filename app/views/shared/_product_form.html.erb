@@ -12,5 +12,6 @@
 <%= form.text_field :updated %>
 <h3>Version</h3>
 <%= form.text_field :version %>
+<%= form.hidden_field :posted_by, @logged_in_as.username %>
 
 <%= form.submit %>

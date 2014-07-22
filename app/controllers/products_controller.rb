@@ -15,6 +15,11 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+
+    # Don't allow editing someone else's post
+    if @product.author_username != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+      raise Forbidden
+    end
   end
 
   def create

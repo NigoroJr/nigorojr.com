@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  ROOT = "root"
+
   def show
     # First attempts to find articles posted by user with given screen name
     @user = User.find_by_screen(params[:screen])

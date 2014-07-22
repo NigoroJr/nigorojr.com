@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140719012315) do
     t.string   "object"
     t.string   "category"
     t.string   "file_path"
+    t.string   "posted_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140719012315) do
     t.string   "team"
     t.date     "updated"
     t.string   "version"
+    t.string   "posted_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

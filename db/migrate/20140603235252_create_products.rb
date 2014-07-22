@@ -8,6 +8,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :team
       t.date   :updated
       t.string :version
+      t.string :posted_by
 
       t.timestamps
     end
