@@ -1,7 +1,7 @@
-<% if @user.present? %>
+<% if @articles.present? %>
   <% @articles.each do |article| %>
     <%= render "shared/article", article: article %>
   <% end %>
 <% else %>
-  No user with that name.
+  No article posted by that user.
 <% end %>

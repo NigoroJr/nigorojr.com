@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   def show
+    # First attempts to find articles posted by user with given screen name
     @user = User.find_by_screen(params[:screen])
     if @user.present?
       @articles = Article.find_all_by_author_username(@user.username)
+    else
+      # If given screen name was not found, assume given param is username
+      @articles = Article.find_all_by_author_username(params[:screen].downcase)
     end
   end
 

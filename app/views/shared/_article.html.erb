@@ -10,7 +10,11 @@
   <section class="posted_at">
     <%= "Posted by" %>
     <% author_screen = get_author_screen(article.author_username) %>
-    <%= link_to author_screen, user_path(author_screen) %>
+    <% if author_screen == nil || author_screen.empty? %>
+      <%= link_to article.author_username, user_path(article.author_username) %>
+    <% else %>
+      <%= link_to author_screen, user_path(author_screen) %>
+    <% end %>
     <%= "at #{article.created_at}" %>
   </section>
   <% if article.updated_at != article.created_at %>
