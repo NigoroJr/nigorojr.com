@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'RMagick'
-
 module PhotosHelper
   def get_alt(photo)
     what = photo.object
