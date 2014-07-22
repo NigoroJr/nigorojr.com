@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     @product.posted_by = @logged_in_as.username
 
     if @product.save
-      redirect_to @product, notice: "Added product"
+      redirect_to products_path, notice: "Added product"
     else
       render "new"
     end
@@ -53,7 +53,7 @@ class ProductsController < ApplicationController
     @product.posted_by = @logged_in_as.username
 
     if @product.save
-      redirect_to @product, notice: "Updated product"
+      redirect_to products_path, notice: "Updated product"
     else
       render "edit"
     end
