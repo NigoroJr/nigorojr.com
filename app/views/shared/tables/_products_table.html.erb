@@ -18,7 +18,7 @@
     <% end %>
     <td>
       <%= link_to "Edit", [:edit, product] %>
-      <%= link_to "Delete", product, method: :delete, confirm: "Really delete?" %>
+      <%= link_to "Delete", product, method: :delete, data: { confirm: "Really delete?" } %>
     </td>
   </tr>
   <% end %>

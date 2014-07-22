@@ -25,7 +25,7 @@
       <% end %>
       <td>
         <%= link_to "Edit", [:edit, article] %>
-        <%= link_to "Delete", article, method: :delete, confirm: "Really delete?" %>
+        <%= link_to "Delete", article, method: :delete, data: { confirm: "Really delete?" } %>
       </td>
     </tr>
   <% end %>

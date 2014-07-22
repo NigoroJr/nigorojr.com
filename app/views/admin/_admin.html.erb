@@ -16,8 +16,8 @@
 <% else %>
   <h2>User</h2>
   <%= link_to "Edit user info", [:edit, @logged_in_as] %>
-  <%= link_to "Delete user", @logged_in_as, method: :delete, confirm: "Really delete user?" %>
+  <%= link_to "Delete user", @logged_in_as, method: :delete, data: { confirm: "Really delete user?" } %>
 <% end %>
 
-<p><%= link_to "Log out", :session, method: :delete, confirm: "Really log out?" %></p>
+<p><%= link_to "Log out", :session, method: :delete, data: { confirm: "Really log out?" } %></p>
 </section>
