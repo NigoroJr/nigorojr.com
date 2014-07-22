@@ -1,6 +1,9 @@
 class PhotosController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
 
+  # PARENT_PATH + photo.file_path becomes the absolute path of the image
+  PARENT_PATH = sprintf "%s/app/assets/images/", Rails.root
+
   def index
     @photos = Photo.all
   end
@@ -20,21 +23,17 @@ class PhotosController < ApplicationController
     object = params[:photo][:object]
     location = params[:photo][:location]
 
-    # Relative path of parent directory based on app/assets/images/
-    partial_path = "GT6"
-    # Write in RAILS_ROOT/app/assets/images/GT6
-    parent_dir = sprintf "%s/app/assets/images/%s", Rails.root, partial_path
-
-    # Build file name
-    file_name = get_image_file_name(parent_dir, object, location, "jpg")
+    # Build file path
+    file_path = get_image_path(object, location, "jpg")
 
     # Write recieved binary data to file
     image_binary = params[:photo][:image_data].read
-    file_path = sprintf "%s/%s", parent_dir, file_name
-    File.open(file_path, "wb").write(image_binary)
+    absolute_path_orig = sprintf "%s/%s", PARENT_PATH, file_path
+    File.open(absolute_path_orig, "wb").write(image_binary)
+    create_thumbnail_of(absolute_path_orig)
 
     # file_path needs to be a relative path from app/assets/images/
-    @photo.file_path = sprintf "%s/%s", partial_path, file_name
+    @photo.file_path = file_path
 
     if @photo.save
       index
@@ -71,26 +70,37 @@ class PhotosController < ApplicationController
   def update
     @photo = Photo.find(params[:id])
     attributes = params.require(:photo).permit(:location, :object, :category)
-    @photo.assign_attributes(attributes)
 
-    object = params[:photo][:object]
-    location = params[:photo][:location]
+    # Update object and location
+    @photo.object = params[:photo][:object]
+    @photo.location = params[:photo][:location]
 
-    # Relative path of parent directory based on app/assets/images/
-    partial_path = "GT6"
-    # Write in RAILS_ROOT/app/assets/images/GT6
-    parent_dir = sprintf "%s/app/assets/images/%s", Rails.root, partial_path
+    # File path of existing image file
+    old_path_orig = @photo.file_path
 
-    # Build file name
-    file_name = get_image_file_name(parent_dir, object, location, "jpg")
+    # Get new file path
+    file_path = get_image_path(@photo.object, @photo.location, "jpg")
+    @photo.file_path = file_path
+    absolute_path_orig = sprintf "%s/%s", PARENT_PATH, file_path
 
     # Write recieved binary data to file
-    image_binary = params[:photo][:image_data].read
-    file_path = sprintf "%s/%s", parent_dir, file_name
-    File.open(file_path, "wb").write(image_binary)
+    f = params[:photo][:image_data]
+    if f != nil   # Image was updated
+      # Updated image file
+      image_binary = f.read
+      File.open(absolute_path_orig, "wb").write(image_binary)
 
-    # file_path needs to be a relative path from app/assets/images/
-    @photo.file_path = sprintf "%s/%s", partial_path, file_name
+      # Also update thumbnail
+      create_thumbnail_of(absolute_path_orig)
+    else  # Changed object and/or location but not the image file
+      old_absolute_path_orig = sprintf "%s/%s", PARENT_PATH, old_path_orig
+      File.rename(old_absolute_path_orig, absolute_path_orig)
+
+      # Rename thumbnail
+      old_absolute_path_thumb = get_thumbnail_path_from(old_absolute_path_orig)
+      absolute_path_thumb = get_thumbnail_path_from(absolute_path_orig)
+      File.rename(old_absolute_path_thumb, absolute_path_thumb)
+    end
 
     if @photo.save
       index
@@ -102,16 +112,43 @@ class PhotosController < ApplicationController
 
   private
   # Builds a valid file name from the given information
-  def get_image_file_name(parent_dir, object, location, extension)
+  # Returns the RELATIVE PATH of the image file from app/assets/images/
+  # Note that this method does NOT return just the file name
+  def get_image_path(object, location, extension)
+    # Relative path of parent directory based on app/assets/images/
+    partial_path = "GT6"
+
+    # File name: CAR_CIRCUIT_ID.EXTENSION
+    # Increments the ID if file already exists
     index = 0
     begin
       file_name = sprintf "%s_%s_%03d.%s",
-        object.downcase.sub(" ", "-"),
-        location.downcase.sub(" ", "-"), index, extension
-      full_path = sprintf "%s/%s", parent_dir, file_name
-      index += 1
-    end while File.exists?(full_path)
+        object.downcase, location.downcase, index, extension
+      file_path = sprintf "%s/%s", partial_path, file_name
+      absolute_path = sprintf "%s/%s", PARENT_PATH, file_path
 
-    return file_name
+      index += 1
+    end while File.exists?(absolute_path)
+
+    return file_path
+  end
+
+  # Creates a thumbnail of the given original image file
+  def create_thumbnail_of(absolute_path_orig)
+    thumb = Magick::ImageList.new(absolute_path_orig)
+
+    absolute_path_thumb = get_thumbnail_path_from(absolute_path_orig)
+
+    # width = thumb.columns * 0.1
+    # height = thumb.rows * 0.1
+    width = 198
+    height = 108
+    thumb.thumbnail(width, height).write(absolute_path_thumb)
+  end
+
+  # Returns the path (or file name) of the thumbnail from the original path.
+  # Argument can be either an absolute or relative path.
+  def get_thumbnail_path_from(path_orig)
+    return path_orig.sub(/(?=\.[^.]*$)/, "_thumb")
   end
 end
