@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140719012315) do
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "body"
-    t.string   "author_username"
+    t.string   "posted_by"
     t.string   "category"
     t.string   "tags"
     t.string   "language"

@@ -17,13 +17,15 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     # Don't allow editing someone else's post
-    if @product.author_username != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+    if @product.posted_by != @logged_in_as.username && @logged_in_as != UsersController::ROOT
       raise Forbidden
     end
   end
 
   def create
-    @product = Product.new(params[:id])
+    attributes = params.require(:product).permit(:name, :description, :website, :category, :team, :updated, :version, :posted_by)
+    @product = Product.new(attributes)
+
     if @product.save
       redirect_to @product, notice: "Added product"
     else
@@ -33,13 +35,21 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
+
+    # Don't delete someone else's post
+    if @product.posted_by != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+      raise Forbidden
+    end
+
     @product.destroy
     redirect_to :products, notice: "Deleted product"
   end
 
   def update
     @product = Product.find(params[:id])
-    @product.assign_attributes(params[:product])
+    attributes = params.require(:product).permit(:name, :description, :website, :category, :team, :updated, :version, :posted_by)
+    @product.assign_attributes(attributes)
+
     if @product.save
       redirect_to @product, notice: "Updated product"
     else

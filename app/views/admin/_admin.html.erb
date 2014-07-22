@@ -10,7 +10,7 @@
     <th>Author</th>
     <th>Manage</th>
   </tr>
-  <% applying_articles = is_root ? Article.all : Article.where(author_username: @logged_in_as.username) %>
+  <% applying_articles = is_root ? Article.all : Article.where(posted_by: @logged_in_as.username) %>
   <% applying_articles.order("created_at").reverse.each do |article| %>
     <tr>
       <td class="article_title"><%= link_to article.title, article %></td>
@@ -22,7 +22,7 @@
         <%= "-" %>
       <% end %>
       </td> 
-      <td><%= User.find_by_username(article.author_username).screen %></td>
+      <td><%= User.find_by_username(article.posted_by).screen %></td>
       <td>
         <%= link_to "Edit", [:edit, article] %>
         <%= link_to "Delete", article, method: :delete, confirm: "Really delete?" %>

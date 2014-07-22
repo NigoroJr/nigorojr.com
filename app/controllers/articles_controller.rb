@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  attr_accessor :content, :author_username
+  attr_accessor :content, :posted_by
   before_filter :login_required, :except => [:index, :show]
 
   def index
@@ -23,17 +23,17 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     # Don't allow editing someone else's post
-    if @article.author_username != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+    if @article.posted_by != @logged_in_as.username && @logged_in_as != UsersController::ROOT
       raise Forbidden
     end
   end
 
   def create
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :author_username)
+    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :posted_by)
     @article = Article.new(attributes)
 
     # Automatically set username of logged in user
-    @article.author_username = @logged_in_as.username
+    @article.posted_by = @logged_in_as.username
 
     if @article.save
       redirect_to @article, notice: "Posted article"
@@ -44,11 +44,11 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :author)
+    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :posted_by)
     @article.assign_attributes(attributes)
 
     # Automatically set username of logged in user
-    @article.author_username = @logged_in_as.username
+    @article.posted_by = @logged_in_as.username
 
     if @article.save
       redirect_to @article, notice: "Updated article"
@@ -59,6 +59,12 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+
+    # Don't delete someone else's post
+    if @article.posted_by != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+      raise Forbidden
+    end
+
     @article.destroy
     redirect_to :articles, notice: "Deleted article"
   end

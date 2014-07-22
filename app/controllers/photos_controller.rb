@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    attributes = params.require(:photo).permit(:location, :object, :category)
+    attributes = params.require(:photo).permit(:location, :object, :category, :posted_by)
     @photo = Photo.new(attributes)
 
     object = params[:photo][:object]
@@ -47,13 +47,19 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
 
     # Don't allow editing someone else's post
-    if @photo.author_username != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+    if @photo.posted_by != @logged_in_as.username && @logged_in_as != UsersController::ROOT
       raise Forbidden
     end
   end
 
   def destroy
     @photo = Photo.find(params[:id])
+
+    # Don't delete someone else's post
+    if @photo.posted_by != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+      raise Forbidden
+    end
+
     begin
       # Remove image file
       absolute_path_orig = sprintf "%s/%s", PARENT_PATH, @photo.file_path
@@ -75,6 +81,7 @@ class PhotosController < ApplicationController
   def update
     @photo = Photo.find(params[:id])
     attributes = params.require(:photo).permit(:location, :object, :category)
+    @photo.assign_attributes(attributes)
 
     # Update object and location
     @photo.object = params[:photo][:object]

@@ -11,13 +11,13 @@ module ArticlesHelper
 
   # Gets the screen name from the given username.
   # Returns the given username if it can't find corresponding screen name.
-  def get_author_screen(author_username)
-    user = User.find_by_username(author_username)
+  def get_author_screen(posted_by)
+    user = User.find_by_username(posted_by)
 
     if user.present?
       return user.screen
     else
-      return author_username
+      return posted_by
     end
   end
 end

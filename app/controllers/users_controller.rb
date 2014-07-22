@@ -5,10 +5,10 @@ class UsersController < ApplicationController
     # First attempts to find articles posted by user with given screen name
     @user = User.find_by_screen(params[:screen])
     if @user.present?
-      @articles = Article.find_all_by_author_username(@user.username)
+      @articles = Article.find_all_by_posted_by(@user.username)
     else
       # If given screen name was not found, assume given param is username
-      @articles = Article.find_all_by_author_username(params[:screen].downcase)
+      @articles = Article.find_all_by_posted_by(params[:screen].downcase)
     end
   end
 
@@ -50,6 +50,11 @@ class UsersController < ApplicationController
 
   def destroy
     @user = find(params[:id])
+
+    if @user.username != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+      raise Forbidden
+    end
+
     @user.destroy
 
     redirect_to "root", notice: "Deleted user"
