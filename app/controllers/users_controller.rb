@@ -18,7 +18,17 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to :root, notice: "Created user"
     else
-      flash.notice = "Try a different username"
+      password = params[:user][:raw_password]
+      password_confirmation = params[:user][:raw_password_confirmation]
+
+      if password.empty? || password_confirmation.empty?
+        flash.notice = "Enter both password and confirmation"
+      elsif password != password_confirmation
+        flash.notice = "Confirmation doesn't match"
+      else
+        flash.notice = "Try a different username"
+      end
+
       render "new"
     end
   end
