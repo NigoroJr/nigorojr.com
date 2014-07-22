@@ -6,4 +6,8 @@ module ApplicationHelper
 
     return website_title
   end
+
+  def get_login_status
+    name = sprintf "%s (%s)", @logged_in_as.screen, @logged_in_as.username
+  end
 end
