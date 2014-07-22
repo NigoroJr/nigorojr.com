@@ -48,7 +48,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
 
     # Don't allow editing someone else's post
-    if @photo.posted_by != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+    if !@logged_in_as.can_modify(@photo)
       raise Forbidden
     end
   end
@@ -57,7 +57,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
 
     # Don't delete someone else's post
-    if @photo.posted_by != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+    if !@logged_in_as.can_modify(@photo)
       raise Forbidden
     end
 

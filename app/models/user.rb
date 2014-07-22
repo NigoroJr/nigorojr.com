@@ -9,6 +9,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Returns whether this user has access to (i.e. can edit/delete) given post
+  # POST is a model object
+  def can_modify(post)
+    if post == nil
+      return false
+    end
+
+    return post.posted_by == self.username ||
+      self.username == UsersController::ROOT
+  end
+
   class << self
     def authenticate(username, password)
       user = User.find_by_username(username.downcase)

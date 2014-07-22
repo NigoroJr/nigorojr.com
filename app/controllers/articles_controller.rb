@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     # Don't allow editing someone else's post
-    if @article.posted_by != @logged_in_as.username && @logged_in_as != UsersController::ROOT
+    if !@logged_in_as.can_modify(@article)
       raise Forbidden
     end
   end
@@ -61,7 +61,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     # Don't delete someone else's post
-    if @article.posted_by != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+    if !@logged_in_as.can_modify(@article)
       raise Forbidden
     end
 

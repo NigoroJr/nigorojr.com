@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
 
-    if @user.username != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+    if !@logged_in_as.can_modify(@user)
       raise Forbidden
     end
   end
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   def destroy
     @user = find(params[:id])
 
-    if @user.username != @logged_in_as.username && @logged_in_as.username != UsersController::ROOT
+    if !@logged_in_as.can_modify(@user)
       raise Forbidden
     end
 
