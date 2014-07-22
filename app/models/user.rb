@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   class << self
     def authenticate(username, password)
-      user = User.find_by_username(username)
+      user = User.find_by_username(username.downcase)
 
       if user && user.hashed_password.present? &&
         BCrypt::Password.new(user.hashed_password) == password

@@ -11,8 +11,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    attributes = params.require(:user).permit(:screen, :username, :raw_password, :raw_password_confirmation)
-    @user = User.new(attributes)
+    @user = User.new
+    @user.screen = params[:user][:screen]
+    @user.username = params[:user][:username].downcase
     @user.hashed_password = BCrypt::Password.create(params[:user][:raw_password])
 
     if @user.save
