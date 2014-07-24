@@ -5,7 +5,11 @@
   </section>
   <hr class="end_body">
   <section class="tags">
-    <%= article.tags %>
+    <% if article.tags != nil %>
+      <% article.tags.split(';').each do |article_tag| %>
+        <%= link_to article_tag, { action: :search, tag: article_tag} %>
+    <% end %>
+  <% end %>
   </section>
   <section class="posted_at">
     <%= "Posted by" %>
