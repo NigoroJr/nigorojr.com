@@ -19,10 +19,10 @@ class ArticlesController < ApplicationController
       @articles = Article.search_by_tag(@articles, params[:tag])
     end
 
+    # If language is explicitly given OR default language is selected
     if params[:language].present? || session[:language].present?
-
-      # When session[:language] == false, all languages are shown
       if params[:language] == "all"
+        # When session[:language] is empty, all languages are shown
         session.delete("language")
       # Update which language to show
       elsif params[:language].present?
