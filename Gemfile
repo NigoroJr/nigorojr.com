@@ -32,7 +32,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'
 
 # Markdown
 gem 'redcarpet'
