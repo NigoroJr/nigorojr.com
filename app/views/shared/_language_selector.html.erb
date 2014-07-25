@@ -1,0 +1,23 @@
+<ul class="select_language">
+  <li>
+  <% if session[:language].present? %>
+    <%= link_to "All", { action: :search, "language" => "all" } %>
+  <% else %>
+    <%= "All" %>
+  <% end %>
+  </li>
+  <li>
+  <% if session[:language] == "English" %>
+    <%= "English" %>
+  <% else %>
+    <%= link_to "English", { action: :search, "language" => "English" } %>
+  <% end %>
+  </li>
+  <li>
+  <% if session[:language] == "Japanese" %>
+    <%= "日本語" %>
+  <% else %>
+    <%= link_to "日本語", { action: :search, "language" => "Japanese" } %>
+  <% end %>
+  </li>
+</ul>

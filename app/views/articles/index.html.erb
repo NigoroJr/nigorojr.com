@@ -1,6 +1,7 @@
 <% if @logged_in_as %>
   <%= link_to "Post new article", :new_article %>
 <% end %>
+<%= render "shared/language_selector" %>
 <% if @articles.present? %>
   <% @articles.each do |article| %>
     <%= render "shared/article", article: article %>

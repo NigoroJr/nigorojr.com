@@ -1,12 +1,40 @@
 class ArticlesController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :login_required, :except => [:index, :show, :search]
 
   def index
-    @articles = Article.order("created_at").reverse
+    @articles = Article.order("created_at")
+
+    # Limit language to display (if necessary)
+    if session[:language].present?
+      @articles = Article.search_by_language(@articles, session[:language])
+    end
+
+    @articles.reverse!
   end
 
   def search
-    @articles = Article.search(params[:tag])
+    @articles = Article.order("created_at")
+
+    if params[:tag].present?
+      @articles = Article.search_by_tag(@articles, params[:tag])
+    end
+
+    if params[:language].present? || session[:language].present?
+
+      # When session[:language] == false, all languages are shown
+      if params[:language] == "all"
+        session.delete("language")
+      # Update which language to show
+      elsif params[:language].present?
+        session[:language] = params[:language]
+      end
+
+      @articles = Article.search_by_language(@articles, session[:language])
+    end
+
+    # Most recent post first
+    @articles.reverse!
+
     render "index"
   end
 

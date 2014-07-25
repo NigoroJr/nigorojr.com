@@ -1,10 +1,17 @@
 class Article < ActiveRecord::Base
-  def Article.search(query)
-    article = order("created_at")
-    if article.present?
-      article = article.where("tags LIKE ? OR title LIKE ?", "%#{query}%", "%#{query}%")
+  def self.search_by_tag(articles, tag)
+    if articles.present? && tag.present?
+      articles = articles.where("tags LIKE ?", "%#{tag}%")
     end
 
-    return article
+    return articles
+  end
+
+  def self.search_by_language(articles, language)
+    if articles.present? && language.present?
+      articles = articles.where("language LIKE ?", "%#{language}%")
+    end
+
+    return articles
   end
 end
