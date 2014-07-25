@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  has_many :comments, dependent: :destroy
+
   def self.search_by_tag(articles, tag)
     if articles.present? && tag.present?
       articles = articles.where("tags LIKE ?", "%#{tag}%")

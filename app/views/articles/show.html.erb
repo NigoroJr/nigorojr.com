@@ -1,3 +1,16 @@
 <% @page_title = @article.title %>
 
 <%= render "shared/article", article: @article %>
+
+<% @article.comments.each do |comment| %>
+  <%= render "shared/comment", comment: comment %>
+<% end %>
+
+<%= form_tag(
+  {
+    controller: "comments",
+    action: "create",
+  }
+) do %>
+  <%= render "shared/forms/comment_form", article_id: @article.id %>
+<% end %>

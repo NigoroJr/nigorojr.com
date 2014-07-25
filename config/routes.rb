@@ -22,4 +22,6 @@ Nigorojr::Application.routes.draw do
   resources :users, except: [:index]
 
   resource :session, only: [:create, :destroy]
+
+  resources :comments, only: [:create, :destroy]
 end

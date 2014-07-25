@@ -46,11 +46,18 @@
 .tags a:hover {
     background-color: #9aacd2;
 }
-/*
-.contents h1 {
-    margin-top: 20px;
+
+.comment {
+    border: 2px solid #284504;
+    border-radius: 3px;
+    margin: 10px 0;
+    padding-top: 10px;
+    padding-left: 10px;
 }
-*/
+
+.comment_body {
+    padding-left: 20px;
+}
 
 .notice {
     background-color: #eba3eb;
