@@ -7,7 +7,7 @@
   <section class="tags">
     <% if article.tags != nil %>
       <% article.tags.split(';').each do |article_tag| %>
-        <%= link_to article_tag, { action: :search, tag: article_tag} %>
+        <%= link_to article_tag, { action: :search, tag: article_tag}, "class" => "tag" %>
     <% end %>
   <% end %>
   </section>
