@@ -1,6 +1,6 @@
 <%= label_tag "Name" %>
 <%= text_field_tag "name" %>
 <%= label_tag "Comment" %>
-<%= text_area_tag "body" %>
+<%= text_area_tag "body", nil, rows: 15 %>
 <%= hidden_field_tag "article_id", article_id %>
 <%= submit_tag %>
