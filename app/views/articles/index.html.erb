@@ -5,7 +5,6 @@
 <% if @articles.present? %>
   <% @articles.each do |article| %>
     <%= render "shared/article", article: article %>
-    <hr class="end_article">
   <% end %>
 
 <% else %>
