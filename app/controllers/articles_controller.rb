@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class ArticlesController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search]
 
@@ -62,6 +64,9 @@ class ArticlesController < ApplicationController
     # Automatically set username of logged in user
     @article.posted_by = @logged_in_as.username
 
+    # Convert language to standard form
+    @article.language = normalize_language(@article.language)
+
     if @article.save
       redirect_to @article, notice: "Posted article"
     else
@@ -76,6 +81,9 @@ class ArticlesController < ApplicationController
 
     # Automatically set username of logged in user
     @article.posted_by = @logged_in_as.username
+
+    # Convert language to standard form
+    @article.language = normalize_language(@article.language)
 
     if @article.save
       redirect_to @article, notice: "Updated article"
@@ -94,5 +102,30 @@ class ArticlesController < ApplicationController
 
     @article.destroy
     redirect_to :articles, notice: "Deleted article"
+  end
+
+  private
+  # Given a string that represents a language, this method returns the
+  # standard string (in this application) that represents that language.
+  # For example, given "日本語", this method returns "Japanese".
+  # Got these languages from Wikipedia.
+  def normalize_language(language)
+    case language
+    when "日本語"
+      return "Japanese"
+    when "Español"
+      return "Spanish"
+    when "Русский"
+      return "Russian"
+    when "Français"
+      return "French"
+    when "中文"
+      return "Chinese"
+    when "Italiano"
+      return "Italian"
+    # If none matches
+    else
+      return language
+    end
   end
 end
