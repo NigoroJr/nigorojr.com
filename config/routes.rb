@@ -5,7 +5,7 @@ Nigorojr::Application.routes.draw do
   # /users/new shows a form to create new user
   get "/users/new" => "users#new"
   # /users/:screen shows articles of that user (for now)
-  get "/users/:screen" => "users#show"
+  get "/users/:username" => "users#show"
 
   root "top#index"
 

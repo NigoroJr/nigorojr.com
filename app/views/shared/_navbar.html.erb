@@ -9,7 +9,7 @@
     <li class="nav_right"><%= link_to "Admin", "/admin" %></li>
     <% if @logged_in_as %>
       <li class="nav_right"><%= link_to "Log out", :session, method: :delete, data: { confirm: "Really log out?" } %></li>
-      <li class="nav_right"><%= link_to get_login_status(), user_path(@logged_in_as.screen) %></li>
+      <li class="nav_right"><%= link_to get_login_status(), user_path(@logged_in_as.username) %></li>
     <% end %>
   </ul>
 </nav>

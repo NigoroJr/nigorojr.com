@@ -5,23 +5,19 @@ class UsersController < ApplicationController
   PHOTOS_LIMIT = 20
 
   def show
-    # First attempts to find articles posted by user with given screen name
-    @user = User.find_by_screen(params[:screen])
-    if @user.present?
-      @articles = Article.where(posted_by: @user.username)
-      @products = Product.where(posted_by: @user.username)
-      @photos = Photo.where(posted_by: @user.username)
-    else
-      # If given screen name was not found, assume given param is username
-      username = params[:screen].downcase
-      @articles = Article.where(posted_by: username)
-      @products = Product.where(posted_by: username)
-      @photos = Photo.where(posted_by: username)
-    end
+    username = params[:username].downcase
+    @user = User.find_by_username(username)
+    @articles = Article.where(posted_by: username)
+    @products = Product.where(posted_by: username)
+    @photos = Photo.where(posted_by: username)
 
-    @articles.limit(ARTICLES_LIMIT)
-    @products.limit(PRODUCTS_LIMIT)
-    @photos.limit(PHOTOS_LIMIT)
+    # Don't show top controller articles
+    @articles = @articles.where!("category NOT LIKE ?", "#{ArticlesController::CATEGORY_TOP}%")
+
+    # Limit and have newest articles come first
+    @articles.limit!(ARTICLES_LIMIT).order!("created_at DESC")
+    @products.limit!(PRODUCTS_LIMIT).order!("created_at DESC")
+    @photos.limit!(PHOTOS_LIMIT).order!("created_at DESC")
   end
 
   def new
