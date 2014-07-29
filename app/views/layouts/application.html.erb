@@ -34,38 +34,33 @@ $(document).on('page:change', photobox);
 
   ga('create', 'UA-44202081-1', 'auto');
   ga('send', 'pageview');
-
 </script>
 </head>
 
 <body>
 <%= render "shared/navbar" %>
 
-<div id="header">
+<section id="header">
   <%= link_to(image_tag("NigoroJrLogo.png", size: "686x200", alt: "NigoroJr Logo"), "/") %>
-</div>
+</section>
 
-<div id="my_body">
+<section id="contents_wrapper">
   <% if flash.notice %>
-    <p class="notice"><%= flash.notice %></p>
+    <p class="notice" onClick="$(this).hide('slow')"><%= flash.notice %><span class="x_button">X</span></p>
   <% end %>
 
-  <div id="contents_wrapper">
-    <div id="main_contents">
+  <section id="contents">
+    <%= yield %>
+  </section>
 
-      <%= yield %>
-
-    </div>
-  </div>
-
-  <div id="footer">
-    <%= link_to(image_tag("vim_love.gif", alt: "I love Vim banner"), "http://www.vim.org") %>
-    <%= link_to(image_tag("glider-small.png", size: "33x33", alt: "Hacker Emblem"), "http://www.catb.org/hacker-emblem/") %>
-    <%= link_to(image_tag("powered_by_perl.gif", alt: "Powered by Perl"), "http://www.perl.com") %>
-    <div id="copyright">
-      Copyright (C) 2014 NigoroJr.com All Rights Reserved
-    </div>
-  </div>
-</div>
+</section>
+<section id="footer">
+  <%= link_to(image_tag("vim_love.gif", alt: "I love Vim banner"), "http://www.vim.org") %>
+  <%= link_to(image_tag("glider-small.png", size: "33x33", alt: "Hacker Emblem"), "http://www.catb.org/hacker-emblem/") %>
+  <%= link_to(image_tag("powered_by_perl.gif", alt: "Powered by Perl"), "http://www.perl.com") %>
+  <section id="copyright">
+    Copyright (C) 2014 NigoroJr.com All Rights Reserved
+  </section>
+</section>
 </body>
 </html>
