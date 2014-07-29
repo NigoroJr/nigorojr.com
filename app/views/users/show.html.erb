@@ -7,7 +7,7 @@
 <% end %>
 
 <% if @products.present? %>
-  <h2>Products</h2>
+  <h2>Recent Products</h2>
   <% @products.each do |product| %>
     <%= render "shared/product", product: product %>
   <% end %>
