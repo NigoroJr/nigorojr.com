@@ -1,36 +1,50 @@
 <section class="article">
-  <h1 class="title"><%= link_to article.title, article %></h1>
+  <h1 class="title">
+    <% if article.category.starts_with?("top") %>
+      <%= article.title %>
+    <% else %>
+      <%= link_to article.title, article %>
+    <% end %>
+  </h1>
+
   <section class="body">
     <%= raw(convert_to_markdown(article.body)) %>
   </section>
-  <% if article.tags != nil %>
+
+  <% if article.tags != nil && !article.tags.blank? %>
     <section class="tags">
       <%= "Tags: " %>
       <% article.tags.split(';').each do |article_tag| %>
-        <%= link_to article_tag, { action: :search, tag: article_tag}, "class" => "tag" %>
+        <%= link_to article_tag, { controller: "articles", action: :search, tag: article_tag}, "class" => "tag" %>
     <% end %>
   </section>
   <% end %>
-  <section class="posted_at">
-    <%= "Posted by" %>
-    <% author_screen = get_author_screen(article.posted_by) %>
-    <% if author_screen == nil || author_screen.empty? %>
-      <%= link_to article.posted_by, user_path(article.posted_by) %>
-    <% else %>
-      <%= link_to author_screen, user_path(author_screen) %>
-    <% end %>
-    <%= "at #{article.created_at}" %>
-  </section>
-  <% if article.updated_at != article.created_at %>
-    <section class="updated_at">
-      <%= "Updated at #{article.updated_at}" %>
+
+  <% if !article.category.starts_with?("top") %>
+    <section class="posted_at">
+      <%= "Posted by" %>
+      <% author_screen = get_author_screen(article.posted_by) %>
+      <% if author_screen == nil || author_screen.empty? %>
+        <%= link_to article.posted_by, user_path(article.posted_by) %>
+      <% else %>
+        <%= link_to author_screen, user_path(article.posted_by) %>
+      <% end %>
+      <%= "at #{article.created_at}" %>
     </section>
+
+    <% if article.updated_at != article.created_at %>
+      <section class="updated_at">
+        <%= "Updated at #{article.updated_at}" %>
+      </section>
+    <% end %>
   <% end %>
+
   <% if @logged_in_as && @logged_in_as.username == article.posted_by %>
     <section class="admin">
       <%= link_to "Edit", [:edit, article] %>
       <%= link_to "Delete", article, method: :delete, data: { confirm: "Are you sure you want to delete this?" } %>
     </section>
   <% end %>
+
   <hr class="end_article">
 </section>

@@ -1,10 +1,14 @@
 # coding: utf-8
 
 class ArticlesController < ApplicationController
+  # Articles that will be shown in top controller
+  CATEGORY_TOP = "top"
+
   before_filter :login_required, :except => [:index, :show, :search]
 
   def index
-    @articles = Article.order("created_at")
+    # Exculde categories such as 'top#about', 'top#index', or even just 'top'
+    @articles = Article.order("created_at").where("category NOT LIKE ?", "#{CATEGORY_TOP}%")
 
     # Limit language to display (if necessary)
     if session[:language].present?

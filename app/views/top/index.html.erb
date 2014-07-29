@@ -1,10 +1,11 @@
-<h1>Welcome to NigoroJr.com!</h1>
+<% if @articles.present? %>
+  <% @articles.each do |article| %>
+    <%= render 'shared/article', article: article %>
+  <% end %>
+<% else %>
+  <h1>Welcome to NigoroJr.com!</h1>
 
-<p>The "Articles" page contains things that I discovered while configuring,
-installing, and developing softwares. However, it's (supposedly) not
-limited to computer stuff.</p
-<p>"Products" page is a collection of apps that we developed/are
-developing.</p>
-<p>"Gallery" has photos that I took in the game Gran Turisumo. Some of them are
-from GT5 and others are from GT6.</p>
-<hr>
+  <p>The "Articles" page contains things that I discovered while configuring, installing, and developing softwares. However, it's (supposedly) not limited to computer stuff.</p>
+  <p>"Products" page is a collection of apps that we developed/are developing.</p>
+  <p>"Gallery" has photos that I took in the game Gran Turisumo. Some of them are from GT5 and others are from GT6.</p>
+<% end %>

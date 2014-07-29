@@ -1,27 +1,8 @@
-<h1>About this website</h1>
-<p>Hi! My name is Naoki, and I'm a Computer Engineering major at a University in Ohio, USA. Computer engineering is a major that focuses more on the correlation between software and hardware, but I consider myself better at programming than I am at "hardware" stuff.</p>
-<h2>Likes</h2>
-<ul>
-  <li>Vim</li>
-  <li>Perl</li>
-  <li>Gentoo Linux</li>
-  <li>...or maybe GNU/Linux in general</li>
-  <li>Git</li>
-  <li>Dvorak</li>
-  <li>My keyboard, Happy Hacking Keyboard</li>
-  <li>Gran Turismo</li>
-</ul>
-<h2>Dislikes</h2>
-<ul>
-  <li>Social media</li>
-  <li>Windows (especially the command line)</li>
-</ul>
-<h2>TODOs</h2>
-<ul>
-  <li>CSS of application.html.erb</li>
-  <li>Markdown for this page</li>
-  <li>Better root privileges?</li>
-  <li>Better top page (news?)</li>
-  <li>User profile</li>
-  <li>Link to users in this page</li>
-</ul>
+<% if @articles.present? %>
+  <% @articles.each do |article| %>
+    <%= render 'shared/article', article: article %>
+  <% end %>
+<% else %>
+  <h1>About this Website</h1>
+  <p>Hi! My name is Naoki, and I'm a Computer Engineering major at a University in Ohio, USA. Computer engineering is a major that focuses more on the correlation between software and hardware, but I consider myself better at programming than I am at "hardware" stuff.</p>
+<% end %>
