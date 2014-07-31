@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140731075910) do
     t.string   "language"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_draft"
+    t.boolean  "is_draft",   default: false
   end
 
   create_table "comments", force: true do |t|

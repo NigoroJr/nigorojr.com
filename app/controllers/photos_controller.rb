@@ -132,7 +132,7 @@ class PhotosController < ApplicationController
   # Note that this method does NOT return just the file name
   def get_image_path(object, location, extension)
     # Relative path of parent directory based on app/assets/images/
-    partial_path = "GT6"
+    partial_path = "GT"
 
     # File name: CAR_CIRCUIT_ID.EXTENSION
     # Increments the ID if file already exists
