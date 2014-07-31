@@ -38,6 +38,9 @@ Session.vim
 *~
 
 # Gran Turismo photos for testing
-GT6/
+GT/
 # But leave the testing images just in case
-!GT6/test_image*
+!GT/test_image*
+
+/public/assets/
+/public/images/
