@@ -76,7 +76,8 @@ class ArticlesController < ApplicationController
         flash[:notice] = "Saved article as draft"
         redirect_to :action => "index"
       else
-        redirect_to @article, notice: "Posted article"
+        flash[:notice] = "Posted article"
+        redirect_to @article
       end
     else
       render "new"
@@ -99,7 +100,8 @@ class ArticlesController < ApplicationController
         flash[:notice] = "Saved article as draft"
         redirect_to :action => "index"
       else
-        redirect_to @article, notice: "Updated article"
+        flash[:notice] = "Updated article"
+        redirect_to @article
       end
     else
       render "new"
@@ -115,7 +117,8 @@ class ArticlesController < ApplicationController
     end
 
     @article.destroy
-    redirect_to :articles, notice: "Deleted article"
+    flash[:notice] = "Deleted article"
+    redirect_to :articles
   end
 
   private

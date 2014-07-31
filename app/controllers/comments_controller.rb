@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     @comment.article_id = params[:article_id]
 
     if @comment.save
-      redirect_to @comment.article, notice: "Posted comment"
+      flash[:notice] = "Posted comment"
+      redirect_to @comment.article
     else
       render @comment.article
     end
@@ -27,6 +28,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
 
-    redirect_to article, notice: "Deleted comment"
+    flash[:notice] = "Deleted comment"
+    redirect_to article
   end
 end

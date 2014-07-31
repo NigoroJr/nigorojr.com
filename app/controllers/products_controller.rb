@@ -28,7 +28,8 @@ class ProductsController < ApplicationController
     @product.posted_by = @logged_in_as.username
 
     if @product.save
-      redirect_to products_path, notice: "Added product"
+      flash[:notice] = "Added product"
+      redirect_to products_path
     else
       render "new"
     end
@@ -41,7 +42,8 @@ class ProductsController < ApplicationController
     @product.posted_by = @logged_in_as.username
 
     if @product.save
-      redirect_to products_path, notice: "Updated product"
+      flash[:notice] = "Updated product"
+      redirect_to products_path
     else
       render "edit"
     end
@@ -56,6 +58,7 @@ class ProductsController < ApplicationController
     end
 
     @product.destroy
-    redirect_to :products, notice: "Deleted product"
+    flash[:notice] = "Deleted product"
+    redirect_to :products
   end
 end

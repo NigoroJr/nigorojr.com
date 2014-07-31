@@ -31,7 +31,8 @@ class UsersController < ApplicationController
     @user.hashed_password = BCrypt::Password.create(params[:user][:raw_password])
 
     if @user.save
-      redirect_to :root, notice: "Created user"
+      flash[:notice] = "Created user"
+      redirect_to :root
     else
       password = params[:user][:raw_password]
       password_confirmation = params[:user][:raw_password_confirmation]
@@ -80,7 +81,8 @@ class UsersController < ApplicationController
     if @user.save
       # Update currently
       @logged_in_as = @user
-      redirect_to :root, notice: "Updated user information"
+      flash[:notice] = "Updated user information"
+      redirect_to :root
     else
       if password != password_confirmation
         flash.notice = "Confirmation doesn't match"
@@ -101,7 +103,8 @@ class UsersController < ApplicationController
 
     @user.destroy
 
-    redirect_to "root", notice: "Deleted user"
+    flash[:notice] = "Deleted user"
+    redirect_to "root"
   end
 
   private
