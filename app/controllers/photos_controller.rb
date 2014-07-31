@@ -2,7 +2,9 @@ class PhotosController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
 
   # PARENT_PATH + photo.file_path becomes the absolute path of the image
-  PARENT_PATH = sprintf "%s/app/assets/images/", Rails.root
+  PARENT_PATH = Rails.env.production? ?
+    "#{Rails.root}/app/assets/images/" :
+    "#{Rails.root}/public/assets/"
 
   def index
     @photos = Photo.all
