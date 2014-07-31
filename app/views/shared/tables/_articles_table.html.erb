@@ -20,6 +20,7 @@
       <% else %>
         <%= "-" %>
       <% end %>
+      </td>
       <td style="text-align: center">
         <% if article.is_draft %>
           <%= "D" %>
@@ -27,7 +28,6 @@
           <%= "-" %>
         <% end %>
       </td>
-      </td> 
       <% if is_root %>
         <td><%= sprintf "%s (%s)", User.username_to_screen(article.posted_by), article.posted_by %></td>
       <% end %>
