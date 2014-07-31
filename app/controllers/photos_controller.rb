@@ -3,8 +3,8 @@ class PhotosController < ApplicationController
 
   # PARENT_PATH + photo.file_path becomes the absolute path of the image
   PARENT_PATH = Rails.env.production? ?
-    "#{Rails.root}/app/assets/images/" :
-    "#{Rails.root}/public/assets/"
+    "#{Rails.root}/public/assets/" :
+    "#{Rails.root}/app/assets/images/"
 
   def index
     @photos = Photo.all
