@@ -1,6 +1,8 @@
 <% @page_title = @article.title %>
 
-<%= render "shared/article", article: @article %>
+<% if !@article.is_draft %>
+  <%= render "shared/article", article: @article %>
+<% end %>
 
 <% @article.comments.each do |comment| %>
   <%= render "shared/comment", comment: comment %>

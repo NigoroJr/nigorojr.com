@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language)
+    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :is_draft)
     @article = Article.new(attributes)
 
     # Automatically set username of logged in user
@@ -72,14 +72,19 @@ class ArticlesController < ApplicationController
     @article.language = normalize_language(@article.language)
 
     if @article.save
-      redirect_to @article, notice: "Posted article"
+      if @article.is_draft
+        flash[:notice] = "Saved article as draft"
+        redirect_to :action => "index"
+      else
+        redirect_to @article, notice: "Posted article"
+      end
     else
       render "new"
     end
   end
 
   def update
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language)
+    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :is_draft)
     @article = Article.find(params[:id])
     @article.assign_attributes(attributes)
 
@@ -90,7 +95,12 @@ class ArticlesController < ApplicationController
     @article.language = normalize_language(@article.language)
 
     if @article.save
-      redirect_to @article, notice: "Updated article"
+      if @article.is_draft
+        flash[:notice] = "Saved article as draft"
+        redirect_to :action => "index"
+      else
+        redirect_to @article, notice: "Updated article"
+      end
     else
       render "new"
     end

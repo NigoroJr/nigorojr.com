@@ -4,7 +4,9 @@
 <%= render "shared/language_selector" %>
 <% if @articles.present? %>
   <% @articles.each do |article| %>
-    <%= render "shared/article", article: article %>
+    <% if !article.is_draft %>
+      <%= render "shared/article", article: article %>
+    <% end %>
   <% end %>
 
 <% else %>
