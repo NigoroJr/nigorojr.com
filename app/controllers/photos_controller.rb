@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
     "#{Rails.root}/app/assets/images/"
 
   def index
-    @photos = Photo.all
+    @photos = Photo.order("created_at DESC")
   end
 
   def show

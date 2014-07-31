@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
 
   def index
-    @products = Product.order("created_at").reverse
+    @products = Product.order("created_at DESC").reverse
   end
 
   def show

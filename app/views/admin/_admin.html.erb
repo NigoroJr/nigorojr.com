@@ -1,16 +1,15 @@
-<% is_root = @logged_in_as.username == UsersController::ROOT %>
 <section class="admin_page">
 <h1>Admin</h1>
 <h2>Articles</h2>
-<%= render "shared/tables/articles_table", is_root: is_root %>
+<%= render "shared/tables/articles_table" %>
 
 <h2>Products</h2>
-<%= render "shared/tables/products_table", is_root: is_root %>
+<%= render "shared/tables/products_table" %>
 
 <h2>Photos</h2>
-<%= render "shared/tables/photos_table", is_root: is_root %>
+<%= render "shared/tables/photos_table" %>
 
-<% if is_root %>
+<% if @is_root %>
   <h2>Users</h2>
   <%= render "shared/tables/users_table" %>
 <% else %>

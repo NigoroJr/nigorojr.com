@@ -4,14 +4,13 @@
     <th>Posted</th>
     <th>Updated</th>
     <th>Draft</th>
-    <% if is_root %>
+    <% if @is_root %>
       <th>Posted by</th>
     <% end %>
     <th>Manage</th>
   </tr>
 
-  <% applying_articles = is_root ? Article.all : Article.where(posted_by: @logged_in_as.username) %>
-  <% applying_articles.order("created_at").reverse.each do |article| %>
+  <% @articles.order("created_at").each do |article| %>
 
     <tr>
       <td class="article_title"><%= link_to article.title, article %></td>
@@ -32,7 +31,7 @@
         <% end %>
       </td>
 
-      <% if is_root %>
+      <% if @is_root %>
         <td><%= sprintf "%s (%s)", User.username_to_screen(article.posted_by), article.posted_by %></td>
       <% end %>
 

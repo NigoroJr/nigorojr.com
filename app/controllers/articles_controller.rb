@@ -8,18 +8,16 @@ class ArticlesController < ApplicationController
 
   def index
     # Exculde categories such as 'top#about', 'top#index', or even just 'top'
-    @articles = Article.order("created_at").where("category NOT LIKE ?", "#{CATEGORY_TOP}%")
+    @articles = Article.order("created_at DESC").where("category NOT LIKE ?", "#{CATEGORY_TOP}%")
 
     # Limit language to display (if necessary)
     if session[:language].present?
       @articles = Article.search_by_language(@articles, session[:language])
     end
-
-    @articles.reverse!
   end
 
   def search
-    @articles = Article.order("created_at")
+    @articles = Article.order("created_at DESC")
 
     if params[:tag].present?
       @articles = Article.search_by_tag(@articles, params[:tag])
@@ -37,9 +35,6 @@ class ArticlesController < ApplicationController
 
       @articles = Article.search_by_language(@articles, session[:language])
     end
-
-    # Most recent post first
-    @articles.reverse!
 
     render "index"
   end

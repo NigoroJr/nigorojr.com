@@ -4,19 +4,18 @@
     <th>Location</th>
     <th>Category</th>
     <th>Thumbnail</th>
-    <% if is_root %>
+    <% if @is_root %>
       <th>Posted by</th>
     <% end %>
     <th>Manage</th>
   </tr>
-  <% applying_photos = is_root ? Photo.all : Photo.where(posted_by: @logged_in_as.username) %>
-  <% applying_photos.each do |photo| %>
+  <% @photos.each do |photo| %>
     <tr>
       <td><%= photo.object %></td>
       <td><%= photo.location %></td>
       <td><%= photo.category %></td>
       <td><%= image_tag photo.get_thumbnail_path, alt: "Thumbnail" %></td>
-      <% if is_root %>
+      <% if @is_root %>
         <td><%= sprintf "%s (%s)", User.username_to_screen(photo.posted_by), photo.posted_by %></td>
       <% end %>
       <td>

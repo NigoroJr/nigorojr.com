@@ -7,17 +7,17 @@ class UsersController < ApplicationController
   def show
     username = params[:username].downcase
     @user = User.find_by_username(username)
-    @articles = Article.where(posted_by: username)
-    @products = Product.where(posted_by: username)
-    @photos = Photo.where(posted_by: username)
+    @articles = Article.where(posted_by: username).order("created_at DESC")
+    @products = Product.where(posted_by: username).order("created_at DESC")
+    @photos = Photo.where(posted_by: username).order("created_at DESC")
 
     # Don't show top controller articles
-    @articles = @articles.where!("category NOT LIKE ?", "#{ArticlesController::CATEGORY_TOP}%")
+    @articles = @articles.where("category NOT LIKE ?", "#{ArticlesController::CATEGORY_TOP}%")
 
     # Limit and have newest articles come first
-    @articles.limit!(ARTICLES_LIMIT).order!("created_at DESC")
-    @products.limit!(PRODUCTS_LIMIT).order!("created_at DESC")
-    @photos.limit!(PHOTOS_LIMIT).order!("created_at DESC")
+    @articles.limit!(ARTICLES_LIMIT)
+    @products.limit!(PRODUCTS_LIMIT)
+    @photos.limit!(PHOTOS_LIMIT)
   end
 
   def new
