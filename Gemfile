@@ -38,7 +38,7 @@ gem 'rmagick', :require => 'RMagick'
 gem 'redcarpet'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
+gem 'bcrypt', '~> 3.1.2', require: 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'
