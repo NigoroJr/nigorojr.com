@@ -78,7 +78,8 @@ class PhotosController < ApplicationController
 
     @photo.destroy
 
-    redirect_to "/gallery"
+    flash[:notic] = "Deleted photo"
+    redirect_to :controller => "admin", :action => "index"
   end
 
   def update
