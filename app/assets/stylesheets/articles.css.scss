@@ -1,4 +1,9 @@
 .select_language {
+    display: block;
+    width: 100%;
+}
+
+.select_language ul {
     list-style: none;
     float: right;
 }
