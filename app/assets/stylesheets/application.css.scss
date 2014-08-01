@@ -41,8 +41,15 @@ body {
 
 .notice {
     background-color: #ccffde;
-    border: 2px solid #ff8cd6;
-    border: 2px solid #B18CFF;
+    border: 2px solid #b18cff;
+    color: #3D000E;
+    font-size: 20px;
+    padding: 5px 1em;
+}
+
+.error {
+    background-color: #edaadd;
+    border: 2px solid #ff5252;
     color: #3D000E;
     font-size: 20px;
     padding: 5px 1em;
