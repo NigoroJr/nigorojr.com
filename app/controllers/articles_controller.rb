@@ -82,6 +82,10 @@ class ArticlesController < ApplicationController
   def update
     attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :is_draft)
     @article = Article.find(params[:id])
+
+    # Previously saved as a draft
+    was_draft = @article.is_draft
+
     @article.assign_attributes(attributes)
 
     # Automatically set username of logged in user
@@ -89,6 +93,11 @@ class ArticlesController < ApplicationController
 
     # Convert language to standard form
     @article.language = normalize_language(@article.language)
+
+    # If editing a draft, update the `created_at` also
+    if was_draft
+      @article.created_at = Time.now
+    end
 
     if @article.save
       if @article.is_draft
