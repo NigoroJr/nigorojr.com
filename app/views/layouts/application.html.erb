@@ -45,8 +45,8 @@ $(document).on('page:change', photobox);
 </section>
 
 <section id="contents_wrapper">
-  <% if flash.notice %>
-    <p class="notice" onClick="$(this).hide('slow')"><%= flash.notice %><span class="x_button">X</span></p>
+  <% if flash[:notice] %>
+    <p class="notice" onClick="$(this).hide('slow')"><%= flash[:notice] %><span class="x_button">X</span></p>
   <% end %>
   <% if flash[:error] %>
     <p class="error" onClick="$(this).hide('slow')"><%= flash[:error] %><span class="x_button">X</span></p>
