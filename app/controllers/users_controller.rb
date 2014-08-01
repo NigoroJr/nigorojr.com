@@ -28,23 +28,23 @@ class UsersController < ApplicationController
     @user = User.new
     @user.screen = params[:user][:screen]
     @user.username = params[:user][:username].downcase
-    @user.hashed_password = BCrypt::Password.create(params[:user][:raw_password])
+
+    password = params[:user][:raw_password]
+    password_confirmation = params[:user][:raw_password_confirmation]
+
+    if !password_is_valid(password, password_confirmation)
+      render "new"
+      return
+    end
+
+    @user.hashed_password = BCrypt::Password.create(password)
 
     if @user.save
       flash[:notice] = "Created user"
       redirect_to :root
+    # Duplicate username
     else
-      password = params[:user][:raw_password]
-      password_confirmation = params[:user][:raw_password_confirmation]
-
-      if password.empty? || password_confirmation.empty?
-        flash.notice = "Enter both password and confirmation"
-      elsif password != password_confirmation
-        flash.notice = "Confirmation doesn't match"
-      else
-        flash.notice = "Try a different username"
-      end
-
+      flash[:error] = "Try a different username"
       render "new"
     end
   end
@@ -74,22 +74,21 @@ class UsersController < ApplicationController
 
     password = params[:user][:raw_password]
     password_confirmation = params[:user][:raw_password_confirmation]
-    if !password.empty?
-      @user.hashed_password = BCrypt::Password.create(params[:user][:raw_password])
+
+    if !password_is_valid(password, password_confirmation)
+      render "new"
+      return
     end
 
+    @user.hashed_password = BCrypt::Password.create(password)
+
     if @user.save
-      # Update currently
+      # Update currently logged in user
       @logged_in_as = @user
       flash[:notice] = "Updated user information"
       redirect_to :root
     else
-      if password != password_confirmation
-        flash.notice = "Confirmation doesn't match"
-      else
-        flash.notice = "Try a different username"
-      end
-
+      flash[:error] = "Try a different username"
       render "new"
     end
   end
@@ -120,5 +119,19 @@ class UsersController < ApplicationController
         post.save
       end
     end
+  end
+
+  # Checks whether the password and confirmation is valid.
+  # This method puts the appropriate message in flash[:error]
+  def password_is_valid(password, password_confirmation)
+      if password.empty? || password_confirmation.empty?
+        flash[:error] = "Enter both password and confirmation"
+        return false
+      elsif password != password_confirmation
+        flash[:error] = "Confirmation doesn't match"
+        return false
+      else
+        return true
+      end
   end
 end
