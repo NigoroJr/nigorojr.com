@@ -104,7 +104,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     flash[:notice] = "Deleted user"
-    redirect_to "root"
+    redirect_to :controller => "top", :action => "index"
   end
 
   private
