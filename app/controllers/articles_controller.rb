@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles = Article.order("created_at DESC")
+    @articles = Article.order("created_at DESC").where("category NOT LIKE ?", "#{CATEGORY_TOP}%")
 
     if params[:tag].present?
       @articles = Article.search_by_tag(@articles, params[:tag])
