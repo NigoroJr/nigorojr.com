@@ -1,7 +1,7 @@
 Nigorojr::Application.routes.draw do
   get "about" => "top#about"
   get "gallery" => "photos#index"
-  match "admin" => "admin#index", via: [:get, :post]
+  get "admin" => "admin#index"
   # /users/new shows a form to create new user
   get "/users/new" => "users#new"
   # /users/:screen shows articles of that user (for now)
