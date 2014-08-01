@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = find(params[:id])
+    @user = User.find(params[:id])
 
     if !@logged_in_as.can_modify(@user)
       raise Forbidden
