@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
     else
-      flash.alert = "Incorrect combination of username and password"
+      flash[:error] = "Incorrect combination of username and password"
     end
     redirect_to params[:from] || :root
   end
