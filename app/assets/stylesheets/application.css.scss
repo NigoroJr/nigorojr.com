@@ -76,16 +76,35 @@ body {
     font-size: 25pt;
 }
 
-#contents h2 {
-    padding: 10px 0;
-}
-
 #contents li {
     margin-left: 1em;
 }
 
 #contents p {
-    margin-bottom: 1em;
+    margin: 1.2em 0;
+}
+
+#contents pre {
+    padding: 10px;
+    background: #ebf8ff;
+    margin: 20px 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+#contents code {
+    background-color: #c4c4c4;
+    padding: 1px;
+    vertical-align: bottom;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    font-family: monospace;
+}
+
+#contents pre code {
+    background-color: rgba(255, 255, 255, 0);
 }
 
 #footer {
