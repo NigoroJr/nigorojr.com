@@ -4,6 +4,7 @@
     <th>Posted</th>
     <th>Updated</th>
     <th>Draft</th>
+    <th>Comments</th>
     <% if @is_root %>
       <th>Posted by</th>
     <% end %>
@@ -29,6 +30,10 @@
         <% else %>
           <%= "-" %>
         <% end %>
+      </td>
+
+      <td style="text-align: center">
+        <%= article.comments.length %>
       </td>
 
       <% if @is_root %>
