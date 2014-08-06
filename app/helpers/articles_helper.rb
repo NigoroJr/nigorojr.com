@@ -20,4 +20,13 @@ module ArticlesHelper
       return posted_by
     end
   end
+
+  def is_viewable(article)
+    # Owner or root can view draft
+    if @logged_in_as && @logged_in_as.can_modify(article)
+      return true
+    end
+
+    return !article.is_draft
+  end
 end

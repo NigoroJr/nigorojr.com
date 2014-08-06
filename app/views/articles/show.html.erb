@@ -1,18 +1,20 @@
-<% @page_title = @article.title %>
+<% if is_viewable(@article) %>
+  <% @page_title = @article.title %>
 
-<% if !@article.is_draft %>
   <%= render "shared/article", article: @article %>
-<% end %>
 
-<% @article.comments.each do |comment| %>
-  <%= render "shared/comment", comment: comment %>
-<% end %>
+  <% @article.comments.each do |comment| %>
+    <%= render "shared/comment", comment: comment %>
+  <% end %>
 
-<%= form_tag(
-  {
-    controller: "comments",
-    action: "create",
-  }
-) do %>
-  <%= render "shared/forms/comment_form", article_id: @article.id %>
+  <%= form_tag(
+    {
+      controller: "comments",
+      action: "create",
+    }
+  ) do %>
+    <%= render "shared/forms/comment_form", article_id: @article.id %>
+  <% end %>
+<% else %>
+  <h1>Please wait for this page to be ready</h1>
 <% end %>

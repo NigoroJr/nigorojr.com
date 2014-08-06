@@ -41,6 +41,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+
+    # Prepare to notice the user
+    if @article.is_draft
+      flash[:notice] = "This article is still a draft"
+    end
   end
 
   def new
