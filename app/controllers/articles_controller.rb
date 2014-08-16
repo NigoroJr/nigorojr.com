@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :is_draft)
+    attributes = params.require(:article).permit(:title, :description, :body, :tags, :category, :language, :is_draft)
     @article = Article.new(attributes)
 
     # Automatically set username of logged in user
@@ -85,7 +85,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    attributes = params.require(:article).permit(:title, :body, :tags, :category, :language, :is_draft)
+    attributes = params.require(:article).permit(:title, :description, :body, :tags, :category, :language, :is_draft)
     @article = Article.find(params[:id])
 
     # Previously saved as a draft

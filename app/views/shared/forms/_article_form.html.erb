@@ -1,6 +1,9 @@
 <h3><%= form.label :title, "Title" %></h3>
 <%= form.text_field :title %>
 
+<h3><%= form.label :description, "Description" %></h3>
+<%= form.text_area :description, cols: 50, rows: 6 %>
+
 <h3><%= form.label :body, "Body" %></h3>
 <%= form.text_area :body, cols: 50, rows: 20 %>
 

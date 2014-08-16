@@ -11,13 +11,7 @@
     <section class="description">
       <%= raw(convert_to_markdown(article.description)) %>
     </section>
-
-    <hr class="description_hr" />
   <% end %>
-
-  <section class="body">
-    <%= raw(convert_to_markdown(article.body)) %>
-  </section>
 
   <% if article.tags != nil && !article.tags.blank? %>
     <section class="tags">
@@ -54,5 +48,5 @@
     </section>
   <% end %>
 
-  <hr class="article_hr" />
+  <hr class="article_hr">
 </section>

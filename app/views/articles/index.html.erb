@@ -5,7 +5,7 @@
 <% if @articles.present? %>
   <% @articles.each do |article| %>
     <% if !article.is_draft %>
-      <%= render "shared/article", article: article %>
+      <%= render "shared/article_description", article: article %>
     <% end %>
   <% end %>
 
