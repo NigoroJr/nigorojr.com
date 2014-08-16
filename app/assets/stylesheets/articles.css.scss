@@ -26,14 +26,18 @@
 .article .body {
 }
 
-.end_article {
+.article .description_hr {
+  border-top: 1px dotted #5c38af;
+}
+
+.article_hr {
   box-shadow: 0 0 10px 1px #005fff;
   height: 0;
   border: 0;
   margin: 20px 0;
 }
 
-.end_article:after {
+.article_hr:after {
   content: "\0";
 }
 
