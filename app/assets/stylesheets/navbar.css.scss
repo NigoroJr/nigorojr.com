@@ -1,11 +1,16 @@
+// $navbar_background: #549AE5;
+// $navbar_background: #0080E2;
+$navbar_background: #0085EB;
+/* background-color: #005fff; */
+
 .navbar {
     /* margin: 0 auto; */
     font-size: 15px;
     /* font-family: Tahoma, Geneva, sans-serif; */
     font-family: "Hiragino Maru Gothic Pro", Meiryo, Tahoma, Geneva, sans-serif;
     font-weight: bold;
-    /* background-color: #005fff; */
-    background-color: #00a2ff;
+    background-color: $navbar_background;
+    border-bottom: 1px solid #295b91;
     overflow: visible;
     padding: 0 20%;
 }
@@ -18,13 +23,19 @@
 
 .navbar ul li {
     display: inline-block;
-    background-color: #00a2ff;
+    background-color: $navbar_background;
     list-style: none;
     margin: 5px 0px;
+    border-right: 1px solid #295b91;
+}
+
+.navbar ul li:first-child {
+    border-left: 1px solid #295b91;
 }
 
 .navbar ul li a {
-    padding: 9px 5px;
+    margin: 0px 3px;
+    padding: 6px 5px;
     text-decoration: none;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -40,11 +51,16 @@
 
 .navbar ul a:hover {
     color: #fff;
-    background-color: #005fff;
+    background-color: #005EA7;
     transition: all 0.3s ease-in-out 0;
     -webkit-transition: all 0.3s ease-in-out 0;
 }
 
 .navbar .nav_right {
     float: right;
+}
+
+/* The item on the very left because .nav_right is float: right */
+.navbar .nav_right:last-child {
+    border-left: 1px solid #295b91;
 }
