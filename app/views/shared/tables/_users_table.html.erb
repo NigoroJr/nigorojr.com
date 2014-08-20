@@ -10,7 +10,7 @@
       <td><%= user.username %></td>
       <td><%= user.screen ? user.screen : "-" %></td>
       <td><%= user.created_at %></td>
-      <td><%= link_to "Delete", user, method: :delete, data: { confirm: "Really delete?" } %></td>
+      <td><%= link_to "Delete", user, method: :delete, class: "button delete", data: { confirm: "Really delete?" } %></td>
     </tr>
   <% end %>
 </table>

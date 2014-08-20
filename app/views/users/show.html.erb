@@ -2,7 +2,7 @@
 <% if @articles.present? %>
   <h2>Recent Articles</h2>
   <% @articles.each do |article| %>
-    <%= render "shared/article", article: article %>
+    <%= render "shared/article_description", article: article %>
   <% end %>
 <% end %>
 

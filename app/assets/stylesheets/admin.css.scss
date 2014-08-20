@@ -10,6 +10,13 @@
     border: 1px solid #000000;
 }
 
-.article_title, .product_name {
-    width: 300px;
+.article_title, .product_name, .car_name {
+    width: 280px;
+}
+
+.admin_page .manage {
+    width: 120px;
+    padding: 4px 0;
+    vertical-align: middle;
+    text-align: center;
 }

@@ -11,16 +11,16 @@
   </tr>
   <% @photos.each do |photo| %>
     <tr>
-      <td><%= photo.object %></td>
+      <td class="car_name"><%= photo.object %></td>
       <td><%= photo.location %></td>
       <td><%= photo.category %></td>
       <td><%= image_tag photo.get_thumbnail_path, alt: "Thumbnail" %></td>
       <% if @is_root %>
         <td><%= sprintf "%s (%s)", User.username_to_screen(photo.posted_by), photo.posted_by %></td>
       <% end %>
-      <td>
-        <%= link_to "Edit", [:edit, photo] %>
-        <%= link_to "Delete", photo, method: :delete, data: { confirm: "Really delete?" } %>
+      <td class="manage">
+        <%= link_to "Edit", [:edit, photo], class: "button edit" %>
+        <%= link_to "Delete", photo, method: :delete, class: "button delete", data: { confirm: "Really delete?" } %>
       </td>
     </tr>
   <% end %>

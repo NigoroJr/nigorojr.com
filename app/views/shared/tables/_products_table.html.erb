@@ -15,9 +15,9 @@
       <% p product.posted_by %>
       <td><%= sprintf "%s (%s)", User.username_to_screen(product.posted_by), product.posted_by %></td>
     <% end %>
-    <td>
-      <%= link_to "Edit", [:edit, product] %>
-      <%= link_to "Delete", product, method: :delete, data: { confirm: "Really delete?" } %>
+    <td class="manage">
+      <%= link_to "Edit", [:edit, product], class: "button edit" %>
+      <%= link_to "Delete", product, method: :delete, class: "button delete", data: { confirm: "Really delete?" } %>
     </td>
   </tr>
   <% end %>
