@@ -1,27 +1,19 @@
 <section class="select_language">
   <ul>
-    <li><%= "Select language: [" %></li>
-    <li>
     <% if session[:language].present? %>
-      <%= link_to "All", { action: :search, "language" => "all" } %>
+      <li><%= link_to "All", { action: :search, "language" => "all" } %></li>
     <% else %>
-      <%= "All" %>
+      <li class="selected">All</li>
     <% end %>
-    </li>
-    <li>
     <% if session[:language] == "English" %>
-      <%= "English" %>
+      <li class="selected">English</li>
     <% else %>
-      <%= link_to "English", { action: :search, "language" => "English" } %>
+      <li><%= link_to "English", { action: :search, "language" => "English" } %></li>
     <% end %>
-    </li>
-    <li>
     <% if session[:language] == "Japanese" %>
-      <%= "日本語" %>
+      <li class="selected">日本語</li>
     <% else %>
-      <%= link_to "日本語", { action: :search, "language" => "Japanese" } %>
+      <li><%= link_to "日本語", { action: :search, "language" => "Japanese" } %></li>
     <% end %>
-    </li>
-    <li><%= "] (Current: " + (session[:language].present? ? session[:language] : "All") + ")" %></li>
   </ul>
 </section>
