@@ -3,14 +3,14 @@
   vertical-align: middle;
 }
 
+.user_bar .new {
+  display: inline-block;
+}
+
 .user_bar:after {
   content: "";
   clear: both;
   display: block;
-}
-
-.new {
-  float: left;
 }
 
 .select_language {
@@ -22,25 +22,16 @@
   padding: 5px;
 }
 
-.select_language ul {
-  list-style: none;
-}
-
 .select_language li {
   margin: 0 !important;
   padding: 0 10px;
   float: left;
   display: block;
+  list-style: none;
 }
 
 .select_language li a {
   text-decoration: none;
-}
-
-.select_language:after {
-  content: "";
-  clear: both;
-  display: block;
 }
 
 .selected {

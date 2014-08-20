@@ -74,12 +74,20 @@ body {
     background-image: linear-gradient(#fafafa, #aaa);
 }
 
+.button:active {
+    background: #ccc;
+}
+
 .new {
     background-image: linear-gradient(#a1f6f6, #a1d8f6)
 }
 
 .new:hover {
     background-image: linear-gradient(#b1f6f6, #31d8f6)
+}
+
+.new:active {
+    background: #31d8f6;
 }
 
 #contents_wrapper {
