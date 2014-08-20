@@ -63,7 +63,7 @@ body {
     color: #000;
     font-weight: bold;
     text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.9);
-    padding: 5px;
+    padding: 3px 5px;
     background-image: linear-gradient(#fcfcfc, #ccc);
     border-radius: 3px;
     border: 1px solid #aaa;
@@ -88,6 +88,20 @@ body {
 
 .new:active {
     background: #31d8f6;
+}
+
+.delete {
+    background-image: linear-gradient(#fc7f74, #fb4636);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.9);
+}
+
+.delete:hover {
+    background-image: linear-gradient(#ec7f74, #eb4636)
+}
+
+.delete:active {
+    background: #eb4636;
 }
 
 #contents_wrapper {

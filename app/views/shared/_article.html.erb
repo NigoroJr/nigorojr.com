@@ -49,8 +49,8 @@
 
   <% if @logged_in_as && @logged_in_as.username == article.posted_by %>
     <section class="admin">
-      <%= link_to "Edit", [:edit, article] %>
-      <%= link_to "Delete", article, method: :delete, data: { confirm: "Are you sure you want to delete this?" } %>
+      <%= link_to "Edit", [:edit, article], class: "button edit" %>
+      <%= link_to "Delete", article, method: :delete, class: "button delete", data: { confirm: "Are you sure you want to delete this?" } %>
     </section>
   <% end %>
 
