@@ -1,13 +1,13 @@
 <% if @logged_in_as %>
-  <%= link_to "Post new photo", :new_photo, class: "button " %>
+  <%= link_to "Post new photo", :new_photo, class: "button new" %>
 <% end %>
 
 <% if @photos.present? %>
-  <div id="gallery">
+  <section id="gallery">
     <% @photos.each do |photo| %>
       <%= render "shared/photo_thumbnail", photo: photo %>
     <% end %>
-  </div>
+  </section>
 <% else %>
   <h1>No image found</h1>
 <% end%>
