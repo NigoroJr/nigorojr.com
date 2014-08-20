@@ -3,16 +3,19 @@
 $navbar_background: #0085EB;
 /* background-color: #005fff; */
 
+.navbar_wrapper {
+    width: 100%;
+    background-color: $navbar_background;
+}
+
 .navbar {
-    /* margin: 0 auto; */
+    width: 980px;
+    margin: 0 auto;
     font-size: 15px;
-    /* font-family: Tahoma, Geneva, sans-serif; */
     font-family: "Hiragino Maru Gothic Pro", Meiryo, Tahoma, Geneva, sans-serif;
     font-weight: bold;
     background-color: $navbar_background;
     border-bottom: 1px solid #295b91;
-    overflow: visible;
-    padding: 0 20%;
 }
 
 .navbar ul:after {
