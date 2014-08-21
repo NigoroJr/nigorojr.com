@@ -30,8 +30,13 @@
   list-style: none;
 }
 
-.select_language li a {
+.select_language li a, a:visited {
   text-decoration: none;
+  color: #000;
+}
+
+.select_language li a:hover {
+  text-decoration: underline;
 }
 
 .selected {
