@@ -1,6 +1,6 @@
-<h2>Users</h2>
+<h1>Users</h1>
 <% User.where.not(username: "root").order(:screen).each do |user| %>
-  <h3><%= link_to user.screen, "/users/#{user.username}" %></h3>
+  <h2><%= link_to user.screen, "/users/#{user.username}" %></h2>
   <% about = get_about_on(user) %>
   <% if about != nil %>
     <%= raw(convert_to_markdown(about.body)) %>

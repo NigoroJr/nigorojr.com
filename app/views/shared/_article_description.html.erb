@@ -1,11 +1,11 @@
 <section class="article">
-  <h1 class="title">
+  <section class="title">
     <% if article.category.starts_with?("top") %>
       <%= article.title %>
     <% else %>
       <%= link_to article.title, article %>
     <% end %>
-  </h1>
+  </section>
 
   <% if article.description && !article.description.empty? %>
     <section class="description">
