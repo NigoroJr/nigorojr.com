@@ -4,5 +4,12 @@
   <% about = get_about_on(user) %>
   <% if about != nil %>
     <%= raw(convert_to_markdown(about.body)) %>
+
+    <% if @logged_in_as && @logged_in_as.username == about.posted_by %>
+      <section class="admin">
+        <%= link_to "Edit", [:edit, about], class: "button edit" %>
+        <%= link_to "Delete", about, method: :delete, class: "button delete", data: { confirm: "Really delete?" } %>
+      </section>
+    <% end %>
   <% end %>
 <% end %>
