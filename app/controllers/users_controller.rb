@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     username = params[:username].downcase
     @user = User.find_by_username(username)
     @articles = Article.where(posted_by: username).order("created_at DESC")
+    # Don't show "about" pages in recent articles
+    @articles = @articles.where("category NOT LIKE ?", "%#{ArticlesController::CATEGORY_ABOUT}%")
     @products = Product.where(posted_by: username).order("created_at DESC")
     @photos = Photo.where(posted_by: username).order("created_at DESC")
 

@@ -1,4 +1,8 @@
 <h1><%= @user.screen %></h1>
+<% about = get_about_on(@user) %>
+<% if about != nil %>
+  <%= raw(convert_to_markdown(about.body)) %>
+<% end %>
 <% if @articles.present? %>
   <h2>Recent Articles</h2>
   <% @articles.each do |article| %>

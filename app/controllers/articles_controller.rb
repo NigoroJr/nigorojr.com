@@ -3,17 +3,20 @@
 class ArticlesController < ApplicationController
   # Articles that will be shown in top controller
   CATEGORY_TOP = "top"
+  CATEGORY_ABOUT = "about"
 
   before_filter :login_required, :except => [:index, :show, :search]
 
   def index
     # Exculde categories such as 'top#about', 'top#index', or even just 'top'
-    @articles = Article.order("created_at DESC").where("category NOT LIKE ?", "#{CATEGORY_TOP}%")
+    @articles = Article.order("created_at DESC").where("category NOT LIKE ?", "#{CATEGORY_TOP}%").where("category NOT LIKE ?", "about")
 
     # Limit language to display (if necessary)
     if session[:language].present?
       @articles = Article.search_by_language(@articles, session[:language])
     end
+
+    @articles = filter_about(@articles)
   end
 
   def search
@@ -39,6 +42,8 @@ class ArticlesController < ApplicationController
 
       @articles = Article.search_by_language(@articles, session[:language])
     end
+
+    @articles = filter_about(@articles)
 
     render "index"
   end
@@ -157,5 +162,9 @@ class ArticlesController < ApplicationController
     else
       return language
     end
+  end
+
+  def filter_about(articles)
+    return articles.where("category NOT LIKE ?", "%#{ArticlesController::CATEGORY_ABOUT}%")
   end
 end

@@ -134,6 +134,32 @@ body {
     text-decoration: underline;
 }
 
+#contents h2 a {
+    text-decoration: none;
+    color: #000;
+}
+
+#contents h2 a:visited {
+    text-decoration: none;
+}
+
+#contents h2 a:hover {
+    text-decoration: underline;
+}
+
+#contents h3 a {
+    text-decoration: none;
+    color: #000;
+}
+
+#contents h3 a:visited {
+    text-decoration: none;
+}
+
+#contents h3 a:hover {
+    text-decoration: underline;
+}
+
 #contents li {
     margin-left: 1em;
 }

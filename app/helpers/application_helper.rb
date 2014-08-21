@@ -20,4 +20,10 @@ module ApplicationHelper
     })
     return markdown.render(text);
   end
+
+  def get_about_on(user)
+    article = Article.where(category: ArticlesController::CATEGORY_ABOUT, posted_by: user.username)
+
+    return article.first
+  end
 end
