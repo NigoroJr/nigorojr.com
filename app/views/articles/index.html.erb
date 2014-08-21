@@ -4,7 +4,7 @@
   <% end %>
   <%= render "shared/language_selector" %>
   <%= form_tag({action: :search}, method: :get, class: "select_user") do %>
-    <%= select_tag :author, options_for_select(["Select Author"].concat(User.all.map(&:screen))), method: :get, onchange: "this.form.submit()" %>
+    <%= select_tag :author, options_for_select(["Select Author"].concat(User.where.not(username: "root").map(&:screen))), method: :get, onchange: "this.form.submit()" %>
   <% end %>
 </section>
 <% if @articles.present? %>
