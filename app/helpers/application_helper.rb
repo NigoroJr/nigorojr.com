@@ -23,6 +23,9 @@ module ApplicationHelper
 
   def get_about_on(user)
     article = Article.where(category: ArticlesController::CATEGORY_ABOUT, posted_by: user.username)
+    if session[:language].present?
+      article = article.where(language: session[:language])
+    end
 
     return article.first
   end
