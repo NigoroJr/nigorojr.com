@@ -6,6 +6,7 @@ $navbar_background: #0085EB;
 .navbar_wrapper {
     width: 100%;
     background-color: $navbar_background;
+    border-bottom: 1px solid #295b91;
 }
 
 .navbar {
@@ -15,7 +16,6 @@ $navbar_background: #0085EB;
     font-family: "Hiragino Maru Gothic Pro", Meiryo, Tahoma, Geneva, sans-serif;
     font-weight: bold;
     background-color: $navbar_background;
-    border-bottom: 1px solid #295b91;
 }
 
 .navbar ul:after {
