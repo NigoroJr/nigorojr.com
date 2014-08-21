@@ -19,4 +19,9 @@ module ArticlesHelper
 
     return !article.is_draft
   end
+
+  # Override method in form_tag_helper to avoid "utf8" parameter being added
+  def utf8_enforcer_tag
+    return ""
+  end
 end

@@ -13,6 +13,14 @@
   display: block;
 }
 
+.select_user {
+  display: inline-block;
+  width: 100px;
+  float: right;
+  padding: 5px;
+  margin: 0 10px;
+}
+
 .select_language {
   display: block;
   float: right;
@@ -30,7 +38,12 @@
   list-style: none;
 }
 
-.select_language li a, a:visited {
+.select_language li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.select_language li a:visited {
   text-decoration: none;
   color: #000;
 }

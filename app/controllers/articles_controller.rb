@@ -19,6 +19,10 @@ class ArticlesController < ApplicationController
   def search
     @articles = Article.order("created_at DESC").where("category NOT LIKE ?", "#{CATEGORY_TOP}%")
 
+    if !params[:author].blank? && params[:author] != "Select Author"
+      @articles = Article.search_by_author(@articles, params[:author])
+    end
+
     if params[:tag].present?
       @articles = Article.search_by_tag(@articles, params[:tag])
     end

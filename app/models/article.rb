@@ -16,4 +16,13 @@ class Article < ActiveRecord::Base
 
     return articles
   end
+
+  def self.search_by_author(articles, screen)
+    if articles.present? && screen.present?
+      author = User.find_by(screen: screen)
+      articles = articles.where(posted_by: author.username)
+    end
+
+    return articles
+  end
 end
