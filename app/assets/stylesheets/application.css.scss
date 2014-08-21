@@ -118,7 +118,20 @@ body {
 }
 
 #contents h1 {
-    font-size: 25pt;
+    font-size: 23pt;
+}
+
+#contents h1 a {
+    text-decoration: none;
+    color: #000;
+}
+
+#contents h1 a:visited {
+    text-decoration: none;
+}
+
+#contents h1 a:hover {
+    text-decoration: underline;
 }
 
 #contents li {
