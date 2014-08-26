@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731075910) do
+ActiveRecord::Schema.define(version: 20140822203419) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20140731075910) do
     t.string   "team"
     t.date     "updated"
     t.string   "version"
+    t.string   "posted_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skkdict_entries", force: true do |t|
+    t.string   "reading",    null: false
+    t.string   "word",       null: false
+    t.string   "tags"
     t.string   "posted_by"
     t.datetime "created_at"
     t.datetime "updated_at"

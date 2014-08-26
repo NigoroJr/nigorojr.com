@@ -1,0 +1,15 @@
+<table class="skkdict_entries_list">
+  <tr>
+    <th>Reading</th>
+    <th>Word</th>
+    <th>Tags</th>
+  </tr>
+
+  <% @skkdict_entries.each do |entry| %>
+    <tr>
+      <td><%= entry.reading %></td>
+      <td><%= entry.word %></td>
+      <td><%= separate_tags(entry.tags) %></td>
+    </tr>
+  <% end %>
+</table>

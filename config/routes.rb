@@ -7,6 +7,8 @@ Nigorojr::Application.routes.draw do
   # /users/:screen shows articles of that user (for now)
   get "/users/:username" => "users#show"
 
+  get "/skk" => "skkdict_entries#index"
+
   root "top#index"
 
   resources :articles do
@@ -24,4 +26,8 @@ Nigorojr::Application.routes.draw do
   resource :session, only: [:create, :destroy]
 
   resources :comments, only: [:create, :destroy]
+
+  resources :skkdict_entries, except: [:show], path: "skk" do
+    collection { get "search" }
+  end
 end
