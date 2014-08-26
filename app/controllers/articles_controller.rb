@@ -122,7 +122,7 @@ class ArticlesController < ApplicationController
         redirect_to @article
       end
     else
-      render "new"
+      render "edit"
     end
   end
 

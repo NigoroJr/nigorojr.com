@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     password_confirmation = params[:user][:raw_password_confirmation]
 
     if !password_is_valid(password, password_confirmation)
-      render "new"
+      render "edit"
       return
     end
 
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
       redirect_to :root
     else
       flash[:error] = "Try a different username"
-      render "new"
+      render "edit"
     end
   end
 
