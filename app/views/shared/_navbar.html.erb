@@ -1,13 +1,13 @@
 <section class="navbar_wrapper">
   <section class="navbar">
     <ul>
-      <li><%= link_to "Articles", "/articles" %>
-    </li><li><%= link_to "Products", "/products" %>
-    </li><li><%= link_to "Gallery", "/gallery" %>
+      <li><%= link_to "Articles", controller: "articles", action: "index" %>
+    </li><li><%= link_to "Products", controller: "products", action: "index" %>
+    </li><li><%= link_to "Gallery", controller: "photos", action: "index" %>
     </li><li><%= link_to "FTP", "http://ftp.nigorojr.com" %>
-    </li><li><%= link_to "About", "/about" %>
+    </li><li><%= link_to "About", controller: "top", action: "about" %>
     </li><li class="nav_right"><%= mail_to "nigorojr@gmail.com", "Contact" %>
-    </li><li class="nav_right"><%= link_to "Admin", "/admin" %></li>
+    </li><li class="nav_right"><%= link_to "Admin", controller: "admin", action: "index" %></li>
       <% if @logged_in_as %>
         <li class="nav_right"><%= link_to "Log out", :session, method: :delete, data: { confirm: "Really log out?" } %></li>
         <li class="nav_right"><%= link_to get_login_status(), user_path(@logged_in_as.username) %></li>
