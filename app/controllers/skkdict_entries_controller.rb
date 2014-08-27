@@ -23,6 +23,13 @@ class SkkdictEntriesController < ApplicationController
       return
     end
 
+    if params[:skkdict_entry][:reading].empty? ||
+      params[:skkdict_entry][:word].empty?
+      flash[:error] = "Both reading and word must not be empty"
+      redirect_to controller: "skkdict_entries", action: "index"
+      return
+    end
+
     @skkdict_entry = SkkdictEntry.new
     @skkdict_entry.reading = params[:skkdict_entry][:reading]
     @skkdict_entry.word = params[:skkdict_entry][:word]
@@ -38,6 +45,13 @@ class SkkdictEntriesController < ApplicationController
   end
 
   def update
+    if params[:skkdict_entry][:reading].blank? ||
+      params[:skkdict_entry][:word].blank?
+      flash[:error] = "Both reading and word must not be empty"
+      redirect_to controller: "skkdict_entries", action: "index"
+      return
+    end
+
     @skkdict_entry = SkkdictEntry.find(params[:id])
     @skkdict_entry.reading = params[:skkdict_entry][:reading]
     @skkdict_entry.word = params[:skkdict_entry][:word]
