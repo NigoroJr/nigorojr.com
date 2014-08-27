@@ -14,8 +14,7 @@
   <%= render "shared/tables/users_table" %>
 <% else %>
   <h2>User</h2>
-  <%= link_to "Edit user info", [:edit, @logged_in_as] %>
-  <%= link_to "Delete user", @logged_in_as, method: :delete, data: { confirm: "Really delete user?" } %>
+  <%= render "shared/buttons/edit_delete", link: @logged_in_as %>
 <% end %>
 
 <p><%= link_to "Log out", :session, method: :delete, data: { confirm: "Really log out?" } %></p>

@@ -3,6 +3,10 @@
     <th>Reading</th>
     <th>Word</th>
     <th>Tags</th>
+
+    <% if @logged_in_as %>
+      <th>Manage</th>
+    <% end %>
   </tr>
 
   <% @skkdict_entries.each do |entry| %>
@@ -10,6 +14,9 @@
       <td><%= entry.reading %></td>
       <td><%= entry.word %></td>
       <td><%= separate_tags(entry.tags) %></td>
+      <% if @logged_in_as && @logged_in_as.can_modify(entry) %>
+        <td class="manage"><%= render "shared/buttons/edit_delete", link: entry %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

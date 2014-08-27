@@ -41,8 +41,7 @@
       <% end %>
 
       <td class="manage">
-        <%= link_to "Edit", [:edit, article], class: "button edit" %>
-        <%= link_to "Delete", article, method: :delete, class: "button delete", data: { confirm: "Really delete?" } %>
+        <%= render "shared/buttons/edit_delete", link: article %>
       </td>
     </tr>
   <% end %>
