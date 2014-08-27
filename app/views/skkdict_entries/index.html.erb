@@ -1,0 +1,14 @@
+<% if @logged_in_as %>
+  <%= form_for SkkdictEntry.new do |form| %>
+    <%= render "shared/forms/skkdict_entry_form", form: form %>
+  <% end %>
+<% end %>
+<% if @skkdict_entries != nil && @skkdict_entries.present? %>
+  <%= form_tag :skkdict_entries, class: "skkdict_entries_search" do %>
+    <%= text_field_tag "tags" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+  <%= render "shared/tables/skkdict_entries_table" %>
+<% else %>
+  <h1>No entry found</h1>
+<% end %>

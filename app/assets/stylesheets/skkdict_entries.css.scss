@@ -1,0 +1,38 @@
+.skkdict_entry_form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.skkdict_entry_form:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.skkdict_entries_search {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.skkdict_entries_search:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.skkdict_entries_list {
+  border: 1px solid #000;
+  margin: 0 auto;
+}
+
+.skkdict_entries_list tr {
+  border: 1px solid #000;
+}
+
+.skkdict_entries_list th {
+  border: 1px solid #000;
+}
+
+.skkdict_entries_list td {
+  border: 1px solid #000;
+}
