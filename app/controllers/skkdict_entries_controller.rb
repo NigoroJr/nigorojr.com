@@ -17,6 +17,12 @@ class SkkdictEntriesController < ApplicationController
   end
 
   def create
+    # If "Search" button is clicked
+    if params[:commit].downcase == "search"
+      search
+      return
+    end
+
     @skkdict_entry = SkkdictEntry.new
     @skkdict_entry.reading = params[:skkdict_entry][:reading]
     @skkdict_entry.word = params[:skkdict_entry][:word]
@@ -54,10 +60,18 @@ class SkkdictEntriesController < ApplicationController
   end
 
   def search
-    tags = params[:tags]
+    if params[:tags] == nil
+      redirect_to action: "index"
+      return
+    end
+    tags = params[:tags].split(";")
 
-    # TODO: search by tags
-    p 'FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBAAAAAAAAAAAAAAAAAARRRR'
+    queries = []
+    tags.each do |tag|
+      queries.append("tags LIKE '%#{tag}%'")
+    end
+    # tags LIKE %foo% AND tags LIKE %bar% AND ...
+    @skkdict_entries = SkkdictEntry.where(queries.join(" AND ")).order(:reading)
 
     # Bypass application.html.erb
     render "output", :layout => false
