@@ -36,3 +36,14 @@
 .skkdict_entries_list td {
   border: 1px solid #000;
 }
+
+.skkdict_entries_list .word {
+  width: 250px;
+}
+
+.skkdict_entries_list .manage {
+  width: 120px;
+  padding: 4px 0;
+  vertical-align: middle;
+  text-align: center;
+}

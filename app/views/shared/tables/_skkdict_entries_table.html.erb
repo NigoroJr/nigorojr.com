@@ -11,9 +11,9 @@
 
   <% @skkdict_entries.each do |entry| %>
     <tr>
-      <td><%= entry.reading %></td>
-      <td><%= entry.word %></td>
-      <td><%= separate_tags(entry.tags) %></td>
+      <td class="reading"><%= entry.reading %></td>
+      <td class="word"><%= entry.word %></td>
+      <td class="tags"><%= separate_tags(entry.tags) %></td>
       <% if @logged_in_as && @logged_in_as.can_modify(entry) %>
         <td class="manage"><%= render "shared/buttons/edit_delete", link: entry %></td>
       <% end %>
