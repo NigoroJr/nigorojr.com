@@ -48,3 +48,6 @@ gem 'bcrypt', '~> 3.1.2', require: 'bcrypt'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Simple captcha
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'

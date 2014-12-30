@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+
+  simple_captcha:
+    placeholder: "Enter text shown"
+    label: "Please enter the text shown in the box above"
+    message:
+        default: "Text did not match with the image"

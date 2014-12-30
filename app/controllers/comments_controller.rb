@@ -6,6 +6,15 @@ class CommentsController < ApplicationController
     @comment.body = params[:body]
     @comment.article_id = params[:article_id]
 
+    # Mismatched capcha
+    # TODO: Don't hardcode this
+    # TODO: Do something better than redirecting (will lose comment entered)
+    if !simple_captcha_valid?
+      flash[:error] = "Text did not match with the image"
+      redirect_to @comment.article
+      return
+    end
+
     if @comment.save
       flash[:notice] = "Posted comment"
       redirect_to @comment.article

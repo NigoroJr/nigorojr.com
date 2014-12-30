@@ -3,4 +3,5 @@
 <%= label_tag "Comment" %>
 <%= text_area_tag "body", nil, rows: 15 %>
 <%= hidden_field_tag "article_id", article_id %>
+<%= show_simple_captcha %>
 <%= submit_tag "Comment" %>
